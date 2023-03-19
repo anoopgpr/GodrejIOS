@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "10960152135",
+    "project_id": "godrej-ios",
+    "storage_bucket": "godrej-ios.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:10960152135:android:5ebe5f152e044783133362",
+        "android_client_info": {
+          "package_name": "com.godrej.connexions"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "10960152135-6ihv18b8q7s3vaqi9d5pf9hafqla25ih.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDW7lrTPZOl28vPhUwGmCycJMcnZMyRGpg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "10960152135-6ihv18b8q7s3vaqi9d5pf9hafqla25ih.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

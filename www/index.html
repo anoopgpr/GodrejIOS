@@ -1,0 +1,3148 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Godrej</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1, user-scalable=no,height=device-height">
+	<link rel="stylesheet" href="assets/css/jquery.mobile-1.4.5.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+	<link rel="stylesheet" href="assets/css/style.css">
+	<link rel="stylesheet" href="assets/css/mloyal.css">
+	<link rel="stylesheet" href="assets/css/vertical.min.css">
+	<link rel="stylesheet" href="assets/css/botui.min.css" />
+	<link rel="stylesheet" href="assets/css/botui-theme-custom.css" />	
+	<link rel="stylesheet" href="assets/css/owl.carousel.min.css" media="all" />
+	<link rel="stylesheet" href="assets/css/owl.theme.default.css" media="all" />
+	<script src="assets/js/jquery-1.11.1.min.js"></script> 
+	<script src="assets/js/jquery.mobile-1.4.5.min.js"></script> 	
+	<script src="https://cdn.jsdelivr.net/vue/latest/vue.min.js"></script>
+	<script src="assets/js/botui.js"></script>
+	<script src="assets/js/delivery-bot.js"></script>	
+    <script src="assets/js/owl.carousel.min.js"></script>
+	<script type="text/javascript" charset="utf-8" src="cordova.js"></script> 
+	<script src="assets/js/mloyal.js"></script> 
+	<script type="text/javascript">
+				$(document).ready(function(){
+					$("#sidebar2").enhanceWithin().panel();
+					$("#sidebar2").hide();
+					$("#scan_qr_success").enhanceWithin().popup();
+					$("#coupons_pop").enhanceWithin().popup();
+				})
+
+			var deviceType;
+
+			document.addEventListener("deviceready", onDeviceReady, false);
+
+			function onDeviceReady() 
+			{
+
+
+				   deviceType = (navigator.userAgent.match(/iPad/i)) == "iPad" ? "iPad" : (navigator.userAgent.match(/iPhone/i)) == "iPhone" ? "iPhone" : (navigator.userAgent.match(/Android/i)) == "Android" ? "Android" : (navigator.userAgent.match(/BlackBerry/i)) == "BlackBerry" ? "BlackBerry" : "null";
+					 if(deviceType=='null')
+						deviceType='Android';
+
+
+						$("#sidebar").show();
+						$("#sidebar").enhanceWithin().panel();
+
+						//$("#sidebar2").show();
+						receivedEvent('deviceready');
+
+
+			}
+
+		</script>
+</head>
+<body>
+<div data-role="page" data-dom-cache="true" id="selectcategorypage" class="bg-dark full_height">		
+		<div data-role="content" class="ui-content">			
+			<div class="loginreg">
+				<div class="login_logo"> <img src="assets/images/logo.png" alt="Brand Logo" /> </div>
+				<div class="loginreg_inner">
+					<h3 class="login_heading" style="text-align: center;">Please Select Your Role</h3>
+					<div class="form-group mt-20 py-4">
+						<div class="select_role_block">
+							<select name="select_role" id="select_role" data-role="none">
+							    <option value="">-Select-</option>
+								<option value="System Integrator">System Integrator</option>
+								<option value="National Distributor">National Distributor</option>
+								<option value="Sales Distributor">Sales Distributor</option>
+								<option value="Regional Distributor">Regional Distributor</option>
+								<!--<option value="Marketing">Marketing</option>
+								<option value="Product">Product</option>
+								<option value="Service">Service</option>-->
+							</select>
+						</div>
+						<div class="clear"></div>
+					</div>
+					<div class="form-group mt-20">
+						<a href="javascript:savecategory();" class="btn btn_primary">Next</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<!--page-->
+<div data-role="page" data-dom-cache="true" id="page-forgot-password" class="login_bg full_height">
+  <div data-role="content" class="ui-content pt-0 d-flex align-items-start login_content">
+    <div class="loginreg mt-50">
+      <div class="loginreg_inner">
+        <div class="login_logo"> <img src="assets/images/logo.png" class="img-responsive" alt=""> </div>
+        <h1 class="login_heading">Get Started!</h1>
+        <div class="form-group">
+          <label class="form_label">Mobile Number</label>
+          <div class="custom-input">
+            <input type="tel" id="forgot_mobile" name="forgot_mobile" placeholder="Mobile Number" class="form-input" data-role="none" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+          </div>
+          <div class="clear"></div>
+        </div>
+        
+        <div class="form-group mt-20"> <a href="javascript:forget_pswd();" class="btn btn_primary">Submit</a>
+          <div class="clear"></div>
+        </div>
+      </div>
+      <div class="text-center mt-20">Already Registered? <a href="#login_pg_already" class="login_opt">Login</a></div>
+    </div>
+  </div>
+  <div data-role="footer" data-position="fixed" class="footer_login border_none bg_none" data-tap-toggle="false" data-hide-during-focus="false">
+    <div class="d-flex align-items-center justify-content-center"> <img src="assets/images/powered_by.png" class="powered_logo" alt=""> </div>
+  </div>
+</div>
+<!--page-->
+<div data-role="page" data-dom-cache="true" id="login_pg" class="login_bg full_height">
+  <div data-role="content" class="ui-content pt-0 d-flex align-items-start login_content">
+    <div class="loginreg mt-50">
+      <div class="loginreg_inner">
+        <div class="login_logo"> <img src="assets/images/logo.png" class="img-responsive" alt=""> </div>
+        <h1 class="login_heading">Welcome Back!</h1>
+        <div class="form-group">
+          <label class="form_label">Mobile Number</label>
+          <div class="custom-input">
+            <input type="tel" id="username" name="username" placeholder="Mobile Number" class="form-input" data-role="none" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+          </div>
+          <div class="clear"></div>
+        </div>
+        <div class="form-group">
+          <label class="form_label">Passcode</label>
+          <div class="custom-input">
+            <input type="password"  placeholder="Passcode" id="password_myacc" class="form-input" data-role="none" />
+            <label class="show_pass_btn">
+              <input type="checkbox" onclick="javascript:showpass1();" data-role="none" >
+              <span></span> </label>
+          </div>
+          <div class="clear"></div>
+        </div>
+        <div class="d-flex align-items-center justify-content-between mt-10">
+          <label class="d-inline-flex align-items-center justify-content-start mb-0">
+          <div class="custom_check_login" style="display:none;">
+            <input type="checkbox" data-role="none">
+            <span></span> </div>
+          <p style="display:none;">Remember Me</p>
+          </label>
+          <div class="d-inline-flex align-items-center justify-content-start"> <a href="#page-forgot-password" class="forgot_link">Forgot Password?</a> </div>
+        </div>
+        <div class="form-group mt-20"> <a href="javascript:authenticate();" class="btn btn_primary">Submit</a>
+          <div class="clear"></div>
+        </div>
+      </div>
+      <div class="text-center mt-20">Don't have account? <a href="#page-forgot-password" class="login_opt">Register</a></div>
+    </div>
+  </div>
+  <div data-role="footer" data-position="fixed" class="footer_login border_none bg_none" data-tap-toggle="false" data-hide-during-focus="false">
+    <div class="d-flex align-items-center justify-content-center"> <img src="assets/images/powered_by.png" class="powered_logo" alt=""> </div>
+  </div>
+</div>
+
+<!--page-->
+<div data-role="page" data-dom-cache="true" id="login_pg_already" class="login_bg full_height">
+  <div data-role="content" class="ui-content pt-0 d-flex align-items-start login_content">
+    <div class="loginreg mt-50">
+      <div class="loginreg_inner">
+        <div class="login_logo"> <img src="assets/images/logo.png" class="img-responsive" alt=""> </div>
+        <h1 class="login_heading">Login!</h1>
+        <div class="form-group">
+          <label class="form_label">Mobile Number</label>
+          <div class="custom-input">
+            <input type="tel" id="username_new" name="username_new" placeholder="Mobile Number" class="form-input" data-role="none" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+          </div>
+          <div class="clear"></div>
+        </div>
+        <div class="form-group">
+          <label class="form_label">Password</label>
+          <div class="custom-input">
+            <input type="password" placeholder="Password" id="password_myacc_new" class="form-input" data-role="none" />
+            <label class="show_pass_btn">
+              <input type="checkbox" onclick="javascript:showpass1_new();" data-role="none" >
+              <span></span> </label>
+          </div>
+          <div class="clear"></div>
+        </div>
+        <div class="d-flex align-items-center justify-content-between mt-10">
+          <label class="d-inline-flex align-items-center justify-content-start mb-0">
+          <div class="custom_check_login" style="display:none;">
+            <input type="checkbox" data-role="none">
+            <span></span> </div>
+          <p style="display:none;">Remember Me</p>
+          </label>
+          <div class="d-inline-flex align-items-center justify-content-start"> <a href="#page-forgot-password" class="forgot_link">Forgot Password?</a> </div>
+        </div>
+        <div class="form-group mt-20"> <a href="javascript:authenticate_new();" class="btn btn_primary">Submit</a>
+          <div class="clear"></div>
+        </div>
+      </div>
+      <div class="text-center mt-20">Don't have account? <a href="#page-forgot-password" class="login_opt">Register</a></div>
+    </div>
+  </div>
+  <div data-role="footer" data-position="fixed" class="footer_login border_none bg_none" data-tap-toggle="false" data-hide-during-focus="false">
+    <div class="d-flex align-items-center justify-content-center"> <img src="assets/images/powered_by.png" class="powered_logo" alt=""> </div>
+  </div>
+</div>
+
+<!--page-->
+<div data-role="page" data-dom-cache="true" id="profilepage" class="login_bg full_height">
+  <div data-role="content" class="ui-content align-items-center login_content">
+    <div class="loginreg">
+      <div class="loginreg_inner">
+        <div class="login_logo"> <img src="assets/images/logo.png" class="img-responsive" alt=""> </div>
+        <h1 class="login_heading">Profile details!</h1>
+        <div class="form-group">
+          <label class="form_label">First Name</label>
+          <div class="custom-input">
+            <input type="text" id="update_firstname" placeholder="First Name*" class="form-input" data-role="none" />
+          </div>
+          <div class="clear"></div>
+        </div>
+		<div class="form-group">
+          <label class="form_label">Last Name</label>
+          <div class="custom-input">
+            <input type="text" id="update_lastname" placeholder="Last Name" class="form-input" data-role="none" />
+          </div>
+          <div class="clear"></div>
+        </div>
+        <div class="form-group">
+          <label class="form_label">Email ID</label>
+          <div class="custom-input">
+            <input type="email" id="update_email" placeholder="Email ID*" class="form-input" data-role="none" />
+          </div>
+          <div class="clear"></div>
+        </div>
+		<div class="form-group">
+          <label class="form_label">GST No</label>
+          <div class="custom-input">
+            <input type="text" id="update_gstno" placeholder="GST No" class="form-input" data-role="none" maxlength="15" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" onblur="javascript:checkgst();" />
+          </div>
+          <div class="clear"></div>
+        </div>
+		<div class="form-group">
+          <label class="form_label">Pan Card No</label>
+          <div class="custom-input">
+            <input type="text" id="update_pancardno" placeholder="Pan Card No*" class="form-input" data-role="none" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" onblur="javascript:checkpan('update_pancardno');" />
+          </div>
+          <div class="clear"></div>
+        </div>
+		<div class="form-group">
+          <label class="form_label">Aadhar Card No</label>
+          <div class="custom-input">
+            <input type="number" id="update_aadharno" placeholder="Aadhar Card No*" class="form-input" data-role="none" maxlength="12" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" onblur="javascript:checkaadhar('update_aadharno');" />
+          </div>
+          <div class="clear"></div>
+        </div>
+		<!--<div class="form-group">
+          <label class="form_label">Age</label>
+          <div class="custom-input">
+            <input type="number" id="update_age" placeholder="Age" class="form-input" data-role="none" />
+          </div>
+          <div class="clear"></div>
+        </div>-->
+        <!--<div class="form-group">
+          <label class="form_label">Password</label>
+          <div class="custom-input">
+            <input type="password"  placeholder="Password" id="reg_pass" class="form-input" data-role="none"  />
+            <label class="show_pass_btn">
+              <input type="checkbox" onclick="showpass()" data-role="none" >
+              <span></span> </label>
+          </div>
+          <div class="clear"></div>
+        </div>-->
+	    
+		<!--<label class="form_label">Gender</label>
+		<div class="d-flex">
+			<div class="padding0_10px">
+				<label class="mb-0 custom_check">
+				<input type="radio" name="update_gender" id="update_gender_male" data-role="none" value="Male" data-cacheval="false" checked/> <span class="custom_radio"></span> Male 
+				</label>
+			</div>
+			<div class="padding0_10px">
+				<label class="mb-0 custom_check">
+				<input type="radio" name="update_gender" id="update_gender_female" data-role="none" value="Female" data-cacheval="false" /> <span class="custom_radio"></span> Female</label>
+			</div>	
+		</div>-->
+				
+		
+        <div class="form-group">
+          <label class="form_label">Pincode</label>
+          <div class="custom-input">
+            <input type="number" id="update_pincode" placeholder="Pincode*" class="form-input" data-role="none"  maxlength="6" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" onblur="javascript:getdetailsPincode();"/>
+          </div>
+          <div class="clear"></div>
+        </div>
+		<div class="form-group">
+          <label class="form_label">Location</label>
+          <div class="custom-input">
+            <input type="text" id="update_address" placeholder="Location*" class="form-input" data-role="none" />
+          </div>
+          <div class="clear"></div>
+        </div>
+        <div class="form-group">
+          <label class="form_label">City</label>
+          <div class="custom-input">
+            <input type="text" id="update_city" placeholder="City*" class="form-input" data-role="none" />
+          </div>
+          <div class="clear"></div>
+        </div>
+		<!--<div class="form-group">
+          <label class="form_label">State</label>
+          <div class="custom-input">
+            <input type="text" id="update_state" placeholder="State" class="form-input" data-role="none" />
+          </div>
+          <div class="clear"></div>
+        </div>-->
+		<div class="form-group">
+		     <div class="select_role_block_1">
+					<select name="update_state_list" id="update_state_list" data-role="none">
+					</select>
+			</div>
+		</div>
+        
+		<div id="userpassdiv">
+
+		<div class="form-group">
+          <label class="form_label">Password*</label>
+          <div class="custom-input">
+            <input type="text" id="update_password" placeholder="Password" class="form-input" data-role="none" onblur="javascript:checkminlength('update_password','4');" />
+          </div>
+          <div class="clear"></div>
+        </div>
+		<div class="form-group">
+          <label class="form_label">Confirm Password*</label>
+          <div class="custom-input">
+            <input type="text" id="update_conpassword" placeholder="Confirm Password" class="form-input" data-role="none" />
+          </div>
+          <div class="clear"></div>
+        </div>
+
+		</div><br>
+
+        <div class="form-group mt-20"> <a href="javascript:updateProfile();" class="btn btn_primary">Submit</a>
+          <div class="clear"></div>
+        </div>
+      </div>
+      <!-- <div class="text-center mt-20">Already have account? <a href="#login_pg" class="login_opt">Login</a></div> -->
+    </div>
+  </div>
+  <div data-role="footer" data-position="fixed" class="footer_login border_none bg_none" data-tap-toggle="false" data-hide-during-focus="false">
+    <div class="d-flex align-items-center justify-content-center"> <img src="assets/images/powered_by.png" class="powered_logo" alt=""> </div>
+  </div>
+</div>
+
+<!--page-->
+<div data-role="page" data-dom-cache="true" id="otp_pg" class="login_bg full_height">
+  <div data-role="content" class="ui-content pt-0  d-flex align-items-start login_content">
+    <div class="loginreg mt-80">
+      <div class="loginreg_inner">
+        <div class="login_logo"> <img src="assets/images/logo.png" class="img-responsive" alt=""> </div>
+        <h2 class="login_heading">Please enter OTP sent to your registered mobile number</h2>
+        <div class="form-group mt-20 mt-40">
+          <div class="ui-grid_custom">
+            <input type="password" data-role="none" placeholder="Code" id="password_myacc2" style="display:none;border-bottom: 0" />
+            <div class="ui-block-a padding0_10px">
+              <input id="codeBox1" type="number" maxlength="1" class="otp_input" onkeyup="onKeyUpEvent(1, event)" onfocus="onFocusEvent(1)" data-role="none" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+            </div>
+            <div class="ui-block-b padding0_10px">
+              <input id="codeBox2" type="number" maxlength="1" class="otp_input" onkeyup="onKeyUpEvent(2, event)" onfocus="onFocusEvent(2)" data-role="none" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+            </div>
+            <div class="ui-block-c padding0_10px">
+              <input id="codeBox3" type="number" maxlength="1" class="otp_input" onkeyup="onKeyUpEvent(3, event)" onfocus="onFocusEvent(3)" data-role="none" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+            </div>
+            <div class="ui-block-d padding0_10px">
+              <input id="codeBox4" type="number" maxlength="1" class="otp_input" onkeyup="onKeyUpEvent(4, event)" onfocus="onFocusEvent(4)" data-role="none" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+            </div>
+            <div class="ui-block-d padding0_10px">
+              <input id="codeBox5" type="number" maxlength="1" class="otp_input" onkeyup="onKeyUpEvent(5, event)" onfocus="onFocusEvent(5)" data-role="none" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+            </div>
+            <div class="ui-block-d padding0_10px">
+              <input id="codeBox6" type="number" maxlength="1" class="otp_input" onkeyup="onKeyUpEvent(6, event)" onfocus="onFocusEvent(6)" data-role="none" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+            </div>
+          </div>
+          <!--<label class="input_label" style="margin-top: 20px">Enter 4 Digit Code</label>-->
+          <div class="clear"></div>
+        </div>
+        <div class="form-group mt-20"> <a href="#homepage" class="btn btn_primary">Submit</a>
+          <div class="clear"></div>
+        </div>
+      </div>
+      <div class="text-center mt-20"> <a href="#login_pg" class="login_opt">Resend OTP</a></div>
+    </div>
+  </div>
+  <div data-role="footer" data-position="fixed" class="footer_login border_none bg_white" data-tap-toggle="false" data-hide-during-focus="false">
+    <div class="d-flex align-items-center justify-content-center"> <img src="assets/images/powered_by.png" class="powered_logo" alt=""> </div>
+  </div>
+</div>
+
+<!--page--> 
+
+<!--page-->
+
+<div data-role="page" data-dom-cache="true" id="homepage" class="full_height bg_white">
+  <div data-role="header" class="inner_header" data-position="fixed" data-tap-toggle="false" data-hide-during-focus="false">
+    <div class="d-flex align-items-center justify-content-between main_header bg_white bb1">
+      <div class="d-flex align-items-center justify-content-start"> <a href="#sidebar" class="sidemenu_btn" data-role="none"> <img src="assets/images/menu_icon.png" class="img-responsive" alt=""> </a>
+        <div class="header_logo"> <img src="assets/images/logo.png" class="img-responsive" alt=""> </div>
+      </div>
+      <div class="header_right">
+        <div class="header_right_icons d-flex align-items-center"> 
+			<a href="#my_profile_none" class="user_profile">
+          		<div class="user_pic" id="home_user_pic">
+					<img src="assets/images/user_pic.png" class="img-responsive" alt="">
+				</div>
+          		<span id="profilenm">Guest</span>
+			</a>
+			<a href="#notificationspg" id="notification_home" class="notifiction_btn notification_active" data-value="0"><img src="assets/images/notification_icon.png" class="img-responsive" alt=""></a>
+		  </div>
+      </div>
+    </div>
+  </div>
+  <div data-role="content" class="ui-content p-0 d-flex align-items-start inner_content">
+    <div class="out_wrapper">
+      <div class="inner_wrapper">
+		<div>
+			<div class="primary_block mb-20 border_none promo_slider owl-carousel owl-theme p-0">
+				<div class="home_banner">
+					<img src="https://godrejb2b.mloyalretail.com/m/images/apps/home1.png" class="img-responsive" alt="">
+					<a href="javascript:showShop();" class="home_btn">Explore</a>
+				</div>
+				<div class="home_banner">
+					<img src="https://godrejb2b.mloyalretail.com/m/images/apps/home2.png" class="img-responsive" alt="">
+					<a href="javascript:showShop();" class="home_btn">Explore</a>
+				</div>
+			</div>
+		</div>
+
+		<div id="homepagebanners_si">
+			<div class="primary_block mb-20 border_none promo_slider owl-carousel owl-theme p-0">
+				<!--<img src="assets/images/banner1.png" class="img-responsive" alt="">
+				<img src="assets/images/banner-2.png" class="img-responsive" alt="">-->
+			</div>
+		</div>
+
+		<div class="primary_block mb-20 p-0" id="homesection_main">
+          <h3 class="block_title">Register & Warranty Details</h3>
+          <div class="thumb_group">
+			  <a class="thumb" href="javascript:showScan_register();">
+				<div class="thumb_icon"> <img src="assets/images/scan_icon2.png" alt=""> </div>
+				<p>Register Product</p>
+            </a> 
+			  <a class="thumb" href="javascript:viewTransactions_register();">
+				<div class="thumb_icon"> <img src="assets/images/transaction.png" alt=""> </div>
+				<p>View Transactions</p>
+              </a>
+			  <a class="thumb" href="#checkwarrantypg">
+				<div class="thumb_icon"> <img src="assets/images/scheme_icon.png" alt=""> </div>
+				<p>Check Warranty</p>
+              </a>
+			</div>
+        </div>
+        <div class="primary_block mb-20 p-0" id="mymembership_section">
+          <h3 class="block_title" id="mymembership_section_txt_main">My Membership</h3>
+            <div class="thumb_group flex-wrap"> 
+			<a class="thumb" href="#" onclick="javascript:gotomembership();" id="mymembership_section_1">
+            <div class="thumb_icon"> <img src="assets/images/my_membership.png" alt=""> </div>
+            <p>Membership Card</p>
+            </a> 
+			<a class="thumb" href="#" onclick="javascript:gotomessages();" id="mymembership_section_2">
+            <div class="thumb_icon"> <img src="assets/images/messages.png" alt=""> </div>
+            <p>Messages</p>
+            </a> 
+			<a class="thumb" href="#" onclick="javascript:gotopoints();" id="mymembership_section_3">
+            <div class="thumb_icon"> <img src="assets/images/points.png" alt=""> </div>
+            <p>Points</p>
+            </a> 
+			  <a class="thumb" href="#" onclick="javascript:gotorewards();" id="mymembership_section_4">
+				<div class="thumb_icon"> <img src="assets/images/coupons.png" alt=""> </div>
+				<p>Coupons</p>
+              </a> 
+			  <a class="thumb" href="#transactions" id="mymembership_section_5">
+				<div class="thumb_icon"> <img src="assets/images/transaction.png" alt=""> </div>
+				<p>Transaction</p>
+              </a> 
+			  <a class="thumb" href="#profilepage" id="mymembership_section_6">
+				<div class="thumb_icon"> <img src="assets/images/edit_profile.png" alt=""> </div>
+				<p>Edit Profile</p>
+              </a>  
+			  <!--<a class="thumb" href="#requestStatement" id="mymembership_section_7">
+				<div class="thumb_icon"> <img src="assets/images/statement.png" alt=""> </div>
+				<p>Request Statement</p>
+              </a>-->
+			</div>
+        </div>
+		<div class="primary_block mb-20 p-0" id="rewards_section">
+          <h3 class="block_title">Rewards Store</h3>
+          <div class="thumb_group">
+			  <a class="thumb" href="#pointPage">
+				<div class="thumb_icon"> <img src="assets/images/points.png" alt=""> </div>
+				<p>Redeem Points</p>
+            </a> 
+			  <a class="thumb" href="#rewardPage">
+				<div class="thumb_icon"> <img src="assets/images/brand_voucher.png" alt=""> </div>
+				<p>Brand Vouchers</p>
+              </a>
+			</div>
+        </div>
+
+        <div id="homepagebanners_cpns_si">
+			<div class="owl-carousel promo_slider2 owl-theme mb-10"></div>
+		</div>
+
+        <div class="primary_block mb-20 p-0" id="productportfolio_section">
+          <h3 class="block_title">Product Portfolio</h3>
+          <div class="thumb_group flex-wrap" id="product_cat_homepage">
+			  <!--<a class="thumb" href="#products1">
+				<div class="thumb_icon"> <img src="assets/images/Ac.png" alt=""> </div>
+				<p>AC</p>
+              </a>
+			  <a class="thumb" href="#products1">
+				<div class="thumb_icon"> <img src="assets/images/Refrigerator.png" alt=""> </div>
+				<p>Fridge</p>
+              </a>
+			  <a class="thumb" href="#products1">
+				<div class="thumb_icon"> <img src="assets/images/Washing-Machine.png" alt=""> </div>
+				<p>Washing Machine</p>
+              </a>
+			  <a class="thumb" href="#products1">
+				<div class="thumb_icon"> <img src="assets/images/Ovens.png" alt=""> </div>
+				<p>Ovens</p>
+              </a>
+			  <a class="thumb" href="#products1">
+				<div class="thumb_icon"> <img src="assets/images/Air-Cooler.png" alt=""> </div>
+				<p>Air Coolers</p>
+              </a>-->
+			</div>
+      </div>
+	  <div class="primary_block mb-20 p-0" id="announesocial_section">
+          <h3 class="block_title">Announcement & Social</h3>
+          <div class="thumb_group"> <a class="thumb" href="#whatsnew">
+            <div class="thumb_icon"> <img src="assets/images/whats_new.png" alt=""> </div>
+            <p>What's New</p>
+            </a> <a class="thumb" href="#events">
+            <div class="thumb_icon"> <img src="assets/images/events.png" alt=""> </div>
+            <p>Events</p>
+            </a> <a class="thumb" href="#social">
+            <div class="thumb_icon"> <img src="assets/images/social_media.png" alt=""> </div>
+            <p>Social</p>
+            </a>
+			<a class="thumb" href="javascript:showTrainingVideos();">
+				<div class="thumb_icon"> <img src="assets/images/training_meet.png" alt=""> </div>
+				<p>Training</p>
+            </a>
+			</div>
+        </div>
+        <div class="primary_block mb-20 p-0" id="helpsupport_section">
+          <h3 class="block_title">Help & Support</h3>
+          <div class="thumb_group flex-wrap">
+			  <a class="thumb" href="#contactus" id="helpsupport_contactus">
+				<div class="thumb_icon"> <img src="assets/images/contact_us.png" alt=""> </div>
+				<p>Contact us</p>
+			  </a>
+			  <a class="thumb" href="#faqs">
+				<div class="thumb_icon"> <img src="assets/images/faqs.png" alt=""> </div>
+				<p>FAQs</p>
+            </a>
+			  <a class="thumb" href="#howto">
+				<div class="thumb_icon"> <img src="assets/images/how_to.png" alt=""> </div>
+				<p>How To</p>
+            </a>
+			  <a class="thumb" href="#chatbot">
+				<div class="thumb_icon"> <img src="assets/images/chat_bot.png" alt=""> </div>
+				<p>Chat Bot</p>
+			  </a>
+			  <a class="thumb" href="#feedback" >
+				<div class="thumb_icon"> <img src="assets/images/feedback.png" alt=""> </div>
+				<p>Feedback</p>
+              </a>
+			  <!--<a class="thumb" href="#ematrix" >
+				<div class="thumb_icon"> <img src="assets/images/points.png" alt=""> </div>
+				<p>Escalation Matrix</p>
+              </a>-->
+			  <a class="thumb" href="#service_enquiry" id="helpsupport_serviceenquiry">
+				<div class="thumb_icon"> <img src="assets/images/statement.png" alt=""> </div>
+				<p>Service Enquiry</p>
+              </a>
+			</div>
+        </div>
+        <div class="primary_block mb-20 p-0" id="schemes_section">
+          <h3 class="block_title">Schemes & Offers</h3>
+          <div class="thumb_group">
+			  <a class="thumb" href="#" onclick="javascript:showCategorysharenew();">
+				<div class="thumb_icon"> <img src="assets/images/new_launch.png" alt=""> </div>
+				<p>New Product Launch</p>
+            </a>
+			</div>
+        </div>
+        <div class="d-flex align-items-center justify-content-center p-2" id="scanqr_section">
+			<a href="javascript:showScan();" class="scan_btn" data-role="none"> <img src="assets/images/scan_icon.png" alt="">
+			  <h4>Scan & Earn</h4>
+			</a>
+		</div>
+      </div>
+    </div>
+    <div id="filter_panel" class="filter_panel">
+      <div id="filter_transaction_div">
+        <div class="noti_option"> <a class="mb-0 primary_link text-center p-3 close_panel" style="width: 100%">Remove this notification for now </a> </div>
+        <div class="noti_option"> <a href="#" class="filter_close p-3" id="filterClose">Cancel</a> </div>
+      </div>
+    </div>
+    <div class="overlay"></div>
+  </div>
+  <div data-role="panel" id="sidebar" data-display="overlay" data-overlay-theme="a">
+    <div class="sidemenu_header">
+      <a href="#my_profile_none" class="profile_header_inner">
+        <div class="">
+          <div class="profile_pic profile_pic_sidemenu">
+			 <img src="assets/images/user_pic.png" id="cardImagemenu_tl" onclick="javascript:uploadFromGallery();" class="img-responsive" alt="" onerror="this.src='assets/images/user_pic.png';" />
+			</div>
+          <div class="profile_content">
+            <h3 id="profilenm1" class="user_name">Guest</h3>
+            <!-- <p class="user_id font_sm">Gold Member</p> -->
+            <p class="user_id font_sm">Points: <span class="text-white" id="profilepts1">0</span> </p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="side_navs">
+      <ul>
+        <li> <a href="#homepage"> <span>Home</span> </a> </li>
+        <li class="has_sub" id="mymembership_section_panel">
+			<a href="#" onClick="javascript:toggleDD(this)"> <span id="mymembership_section_txt_main_panel">My Membership</span> </a>
+			<ul class="sub_menu">
+				<li id="mymembership_section_panel_1"><a href="#" onclick="javascript:gotomembership();">Membership</a></li>
+				<li id="mymembership_section_panel_2"><a href="#" onclick="javascript:gotomessages();">Message</a></li>
+				<li id="mymembership_section_panel_3"><a href="#" onclick="javascript:gotopoints();">Points</a></li>
+				<li id="mymembership_section_panel_4"><a href="#" onclick="javascript:gotorewards();">Coupons</a></li>
+				<li id="mymembership_section_panel_5"><a href="#transactions">Transaction</a> </li>
+			  	<li id="mymembership_section_panel_6"><a href="#profilepage" >Edit Profile</a></li>  
+			  	<!-- <li id="mymembership_section_panel_7"><a href="#requestStatement" >Request Statement</a></li> --> 
+			</ul>
+		</li>
+        <li class="has_sub" id="rewards_section_panel">
+			<a href="#" onClick="javascript:toggleDD(this)"> <span>Rewards Store</span> </a>
+			<ul class="sub_menu">
+				<li><a href="#pointPage">Redeem Points</a></li>
+				<li><a href="#rewardPage">Brand Voucher</a></li>
+			</ul>
+		</li>
+        <li class="has_sub" id="productportfolio_section_panel">
+			<a href="#" onClick="javascript:toggleDD(this)"> <span>Product Portfolio</span> </a>
+			<ul class="sub_menu" id="product_cat_homepage_sidebar">
+				<li><a href="#products">AC</a></li>
+			    <li><a href="#products">Fridge</a></li>
+			    <li><a href="#products">Washing Machine</a></li>
+			    <li><a href="#products">Ovens</a></li>
+			    <li><a href="#products">Air Coolers</a></li>
+			</ul>
+		</li>
+		<li class="has_sub" id="announesocial_section_panel">
+			<a href="#" onClick="javascript:toggleDD(this)"> <span>Announcement & Social</span> </a>
+			<ul class="sub_menu">
+				<li><a href="#whatsnew">What's New</a></li>
+			    <li><a href="#events">Events</a></li>
+			    <li><a href="#social">Social</a></li>
+			</ul>
+		</li>
+        <li class="has_sub" id="helpsupport_section_panel">
+			<a href="#" onClick="javascript:toggleDD(this)"> <span>Help and Support</span> </a>
+			<ul class="sub_menu">
+				<li id="helpsupport_contactus_panel"><a href="#contactus">Contact us</a></li>
+				<li><a href="#faqs">FAQs</a></li>
+				<li><a href="#howto">How to</a></li>
+				<li><a href="#chatbot">Chat Bot</a></li>
+				<li><a href="#feedback">Feedback</a></li>
+				<!-- <li><a href="#ematrix">Escalation Matrix</a></li> -->
+				<li id="helpsupport_serviceenquiry_panel"><a href="#service_enquiry" >Service Enquiry</a></li>
+			</ul>
+		</li>
+        <li class="has_sub" id="schemes_section_panel">
+			<a href="#" onClick="javascript:toggleDD(this)"> <span>Schemes and Offers</span> </a>
+			<ul class="sub_menu">
+				<li><a href="javascript:showCategorysharenew();">New Product Launch</a></li>
+				<li><a href="#training">Training and Meet</a></li>
+			</ul>
+		</li>
+        <li> <a href="javascript:logoutApp();"> <span>Logout</span> </a> </li>
+      </ul>
+    </div>
+  </div>
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="footer bg_none border_none" data-hide-during-focus="true">
+    <div class="footer_lines w-100"></div>
+  </div>
+</div>
+<!--page-->
+<div data-role="page" data-dom-cache="true" id="notificationspg" class="full_height bg_white">
+  <div data-role="header" class="inner_header" data-position="fixed" data-tap-toggle="false">
+    <div class="d-flex align-items-center justify-content-between main_header bg_white bb1">
+      <div class="d-flex align-items-center justify-content-start"> <a href="#" data-rel="back" class="sidemenu_btn" data-role="none"> <img src="assets/images/back_btn.png" class="img-responsive" alt=""> </a>
+        <h3 class="header_title">Notifications</h3>
+      </div>
+      <!--<div class="header_right">
+			<div class="header_right_icons">
+				 <a href="javascript:showNotifications();" class="header_icons notification_active"><img src="assets/images/notification_icon.png" class="img-responsive" alt=""></a> 
+			</div>
+		</div>--> 
+    </div>
+  </div>
+  <div data-role="content" class="ui-content p-0 align-items-start inner_content1 br_t_20 bg_white">
+
+    <!--<div class="out_wrapper">
+      <div class="inner_wrapper">
+        <div class="primary_block">
+          <div class="d-flex align-items-center justify-content-between">
+            <div class="notification_block p-3">
+              <p class="font_500">Godrej Security Solutions launches new range of  home cameras.</p>
+            </div>
+            <div class="p-3"> <a href="javascript:showCategorysharenew();" class="primary_link">Browse</a> </div>
+          </div>
+        </div>
+        <div class="primary_block">
+          <div class="d-flex align-items-center justify-content-between">
+            <div class="notification_block p-3 w-80">
+              <p class="font_500">India's Leading Locks and Security Solutions|Godrej & Boyce</p>
+            </div>
+            <div class="p-3"> <a href="#" class="primary_link">Browse</a> </div>
+          </div>
+        </div>
+      </div>
+    </div>-->
+	<div id="notification_div" style="margin:10px;"></div>
+
+  </div>
+</div>
+<!--page-->
+ <div data-role="page" data-dom-cache="true" id="feedback" class="full_height bg_white">
+  <div data-role="header" class="inner_header" data-position="fixed" data-tap-toggle="false">
+    <div class="d-flex align-items-center justify-content-between main_header bg_white bb1">
+      <div class="d-flex align-items-center justify-content-start"> <a href="#" data-rel="back" class="sidemenu_btn" data-role="none"> <img src="assets/images/back_btn.png" class="img-responsive" alt=""> </a>
+        <h3 class="header_title">Feedback</h3>
+      </div>
+    </div>
+  </div>
+  <div data-role="content" class="ui-content p-0 d-flex align-items-start inner_content1 br_t_20 bg_white">
+    <div class="out_wrapper">
+      <div class="inner_wrapper">
+			<div class="questionSection">
+				<p class="main_q">Please share your shopping experience with us. </p>	 
+				<div class="level1">
+					<div class="conv">
+					  <p class="question">HOW MUCH YOU SATISFIED OUR SERVICE</p>
+					  <div class="answers">
+						<div class="rate_c">
+							<div class="range_slider">
+								<label>
+									<input type="radio" name="service" value="0" data-role="none">
+									<span class="inactive first" data-value="0"></span>
+								</label>
+								<label>
+									<input type="radio" name="service" value="1" data-role="none">
+									<span class="inactive second" data-value="1"></span>
+								</label>
+								<label>
+									<input type="radio" name="service" value="2" data-role="none">
+									<span class="inactive third" data-value="2"></span>
+								</label>
+								<label>
+									<input type="radio" name="service" value="3" data-role="none">
+									<span class="inactive fourth" data-value="3"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="service" value="4">
+									<span class="inactive fifth" data-value="4"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="service" value="5">
+									<span class="inactive sixth" data-value="5"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="service" value="6">
+									<span class="inactive seventh" data-value="6"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="service" value="7">
+									<span class="inactive eighth" data-value="7"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="service" value="8">
+									<span class="inactive ninth" data-value="8"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="service" value="9">
+									<span class="inactive tenth" data-value="9"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="service" value="10">
+									<span class="inactive eleventh" data-value="10"></span>
+								</label>
+							</div>
+						</div>
+					  </div>
+					</div>
+				</div>
+				<div class="level1">
+					<div class="conv">
+					  <p class="question">HOW MUCH YOU SATISFIED OUR PRODUCT</p>
+					  <div class="answers">
+						<div class="rate_c">
+							<div class="range_slider">
+								<label>
+									<input type="radio" data-role="none" name="product" value="0">
+									<span class="inactive first" data-value="0"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="product" value="1">
+									<span class="inactive second" data-value="1"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="product" value="2">
+									<span class="inactive third" data-value="2"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="product" value="3">
+									<span class="inactive fourth" data-value="3"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="product" value="4">
+									<span class="inactive fifth" data-value="4"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="product" value="5">
+									<span class="inactive sixth" data-value="5"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="product" value="6">
+									<span class="inactive seventh" data-value="6"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="product" value="7">
+									<span class="inactive eighth" data-value="7"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="product" value="8">
+									<span class="inactive ninth" data-value="8"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="product" value="9">
+									<span class="inactive tenth" data-value="9"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="product" value="10">
+									<span class="inactive eleventh" data-value="10"></span>
+								</label>
+							</div>
+						</div>
+					  </div>
+					</div>
+					<div class="level2" style="display: none;" >				  				  
+					  <div class="conv">
+						<p class="question subq">Product Quality</p>
+						<div class="answers">
+						  <div class="rate_c">
+							<div class="range_slider">
+								<label>
+									<input type="radio" data-role="none" name="product_quality" value="0">
+									<span class="inactive first" data-value="0"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="product_quality" value="1">
+									<span class="inactive second" data-value="1"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="product_quality" value="2">
+									<span class="inactive third" data-value="2"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="product_quality" value="3">
+									<span class="inactive fourth" data-value="3"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="product_quality" value="4">
+									<span class="inactive fifth" data-value="4"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="product_quality" value="5">
+									<span class="inactive sixth" data-value="5"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="product_quality" value="6">
+									<span class="inactive seventh" data-value="6"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="product_quality" value="7">
+									<span class="inactive eighth" data-value="7"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="product_quality" value="8">
+									<span class="inactive ninth" data-value="8"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="product_quality" value="9">
+									<span class="inactive tenth" data-value="9"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="product_quality" value="10">
+									<span class="inactive eleventh" data-value="10"></span>
+								</label>
+							</div>
+						</div>
+						</div>
+					  </div>
+					  <div class="conv">
+						<p class="question subq">Value for money prices</p>
+						<div class="answers">
+						  <div class="rate_c">
+							<div class="range_slider">
+								<label>
+									<input type="radio" data-role="none" name="value_for_money" value="0">
+									<span class="inactive first" data-value="0"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="value_for_money" value="1">
+									<span class="inactive second" data-value="1"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="value_for_money" value="2">
+									<span class="inactive third" data-value="2"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="value_for_money" value="3">
+									<span class="inactive fourth" data-value="3"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="value_for_money" value="4">
+									<span class="inactive fifth" data-value="4"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="value_for_money" value="5">
+									<span class="inactive sixth" data-value="5"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="value_for_money" value="6">
+									<span class="inactive seventh" data-value="6"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="value_for_money" value="7">
+									<span class="inactive eighth" data-value="7"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="value_for_money" value="8">
+									<span class="inactive ninth" data-value="8"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="value_for_money" value="9">
+									<span class="inactive tenth" data-value="9"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="value_for_money" value="10">
+									<span class="inactive eleventh" data-value="10"></span>
+								</label>
+							</div>
+						</div>
+						</div>
+					  </div>
+					  <div class="conv">
+						<p class="question subq">Availability of Sizes</p>
+						<div class="answers">
+						  <div class="rate_c">
+							<div class="range_slider">
+								<label>
+									<input type="radio" data-role="none" name="available_size" value="0">
+									<span class="inactive first" data-value="0"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="available_size" value="1">
+									<span class="inactive second" data-value="1"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="available_size" value="2">
+									<span class="inactive third" data-value="2"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="available_size" value="3">
+									<span class="inactive fourth" data-value="3"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="available_size" value="4">
+									<span class="inactive fifth" data-value="4"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="available_size" value="5">
+									<span class="inactive sixth" data-value="5"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="available_size" value="6">
+									<span class="inactive seventh" data-value="6"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="available_size" value="7">
+									<span class="inactive eighth" data-value="7"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="available_size" value="8">
+									<span class="inactive ninth" data-value="8"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="available_size" value="9">
+									<span class="inactive tenth" data-value="9"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="available_size" value="10">
+									<span class="inactive eleventh" data-value="10"></span>
+								</label>
+							</div>
+						</div>
+						</div>
+					  </div>
+					  <div class="conv">
+						<p class="question subq">Collection/Range</p>
+						<div class="answers">
+						  <div class="rate_c">
+							<div class="range_slider">
+								<label>
+									<input type="radio" data-role="none" name="collection_range" value="0">
+									<span class="inactive first" data-value="0"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="collection_range" value="1">
+									<span class="inactive second" data-value="1"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="collection_range" value="2">
+									<span class="inactive third" data-value="2"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="collection_range" value="3">
+									<span class="inactive fourth" data-value="3"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="collection_range" value="4">
+									<span class="inactive fifth" data-value="4"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="collection_range" value="5">
+									<span class="inactive sixth" data-value="5"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="collection_range" value="6">
+									<span class="inactive seventh" data-value="6"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="collection_range" value="7">
+									<span class="inactive eighth" data-value="7"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="collection_range" value="8">
+									<span class="inactive ninth" data-value="8"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="collection_range" value="9">
+									<span class="inactive tenth" data-value="9"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="collection_range" value="10">
+									<span class="inactive eleventh" data-value="10"></span>
+								</label>
+							</div>
+						</div>
+						</div>
+					  </div>	
+					</div>
+				</div>
+				<div class="level1">
+					<div class="conv">
+					  <p class="question">HOW MUCH YOU SATISFIED OUR OFFERS</p>
+					  <div class="answers">
+						<div class="rate_c">
+							<div class="range_slider">
+								<label>
+									<input type="radio" data-role="none" name="offers" value="0">
+									<span class="inactive first" data-value="0"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="offers" value="1">
+									<span class="inactive second" data-value="1"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="offers" value="2">
+									<span class="inactive third" data-value="2"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="offers" value="3">
+									<span class="inactive fourth" data-value="3"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="offers" value="4">
+									<span class="inactive fifth" data-value="4"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="offers" value="5">
+									<span class="inactive sixth" data-value="5"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="offers" value="6">
+									<span class="inactive seventh" data-value="6"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="offers" value="7">
+									<span class="inactive eighth" data-value="7"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="offers" value="8">
+									<span class="inactive ninth" data-value="8"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="offers" value="9">
+									<span class="inactive tenth" data-value="9"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="offers" value="10">
+									<span class="inactive eleventh" data-value="10"></span>
+								</label>
+							</div>
+						</div>
+					  </div>
+					</div>
+					<div class="level2" style="display: none;" >				  				  
+					  <div class="conv">
+						<p class="question subq">Offers/Promotion attractive enough</p>
+						<div class="answers">
+						  <div class="rate_c">
+							<div class="range_slider">
+								<label>
+									<input type="radio" data-role="none" name="attractive_enough" value="0">
+									<span class="inactive first" data-value="0"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="attractive_enough" value="1">
+									<span class="inactive second" data-value="1"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="attractive_enough" value="2">
+									<span class="inactive third" data-value="2"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="attractive_enough" value="3">
+									<span class="inactive fourth" data-value="3"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="attractive_enough" value="4">
+									<span class="inactive fifth" data-value="4"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="attractive_enough" value="5">
+									<span class="inactive sixth" data-value="5"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="attractive_enough" value="6">
+									<span class="inactive seventh" data-value="6"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="attractive_enough" value="7">
+									<span class="inactive eighth" data-value="7"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="attractive_enough" value="8">
+									<span class="inactive ninth" data-value="8"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="attractive_enough" value="9">
+									<span class="inactive tenth" data-value="9"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="attractive_enough" value="10">
+									<span class="inactive eleventh" data-value="10"></span>
+								</label>
+							</div>
+						</div>
+						</div>
+					  </div>
+					</div>
+				</div>
+			  	<div class="level1">
+				<div class="conv">
+				  <p class="question">HOW MUCH YOU RATE SATISFIED STORE ATMOSPHERE</p>
+				  <div class="answers">
+					<div class="rate_c">
+						<div class="range_slider">
+								<label>
+									<input type="radio" data-role="none" name="store_atmosphere" value="0">
+									<span class="inactive first" data-value="0"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="store_atmosphere" value="1">
+									<span class="inactive second" data-value="1"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="store_atmosphere" value="2">
+									<span class="inactive third" data-value="2"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="store_atmosphere" value="3">
+									<span class="inactive fourth" data-value="3"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="store_atmosphere" value="4">
+									<span class="inactive fifth" data-value="4"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="store_atmosphere" value="5">
+									<span class="inactive sixth" data-value="5"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="store_atmosphere" value="6">
+									<span class="inactive seventh" data-value="6"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="store_atmosphere" value="7">
+									<span class="inactive eighth" data-value="7"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="store_atmosphere" value="8">
+									<span class="inactive ninth" data-value="8"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="store_atmosphere" value="9">
+									<span class="inactive tenth" data-value="9"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="store_atmosphere" value="10">
+									<span class="inactive eleventh" data-value="10"></span>
+								</label>
+							</div>
+					</div>
+				  </div>
+				</div>
+			   <div class="level2" style="display: none;">              
+				  <div class="conv">
+					<p class="question subq">Ambience and Cleanliness</p>
+					<div class="answers">
+					  <div class="rate_c">
+							<div class="range_slider">
+								<label>
+									<input type="radio" data-role="none" name="cleanliness" value="0">
+									<span class="inactive first" data-value="0"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="cleanliness" value="1">
+									<span class="inactive second" data-value="1"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="cleanliness" value="2">
+									<span class="inactive third" data-value="2"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="cleanliness" value="3">
+									<span class="inactive fourth" data-value="3"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="cleanliness" value="4">
+									<span class="inactive fifth" data-value="4"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="cleanliness" value="5">
+									<span class="inactive sixth" data-value="5"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="cleanliness" value="6">
+									<span class="inactive seventh" data-value="6"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="cleanliness" value="7">
+									<span class="inactive eighth" data-value="7"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="cleanliness" value="8">
+									<span class="inactive ninth" data-value="8"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="cleanliness" value="9">
+									<span class="inactive tenth" data-value="9"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="cleanliness" value="10">
+									<span class="inactive eleventh" data-value="10"></span>
+								</label>
+							</div>
+						</div>
+					</div>
+				  </div>
+				  <div class="conv">
+					<p class="question subq">Store Lighting and A/C</p>
+					<div class="answers">
+					  <div class="rate_c">
+							<div class="range_slider">
+								<label>
+									<input type="radio" data-role="none" name="store_ac" value="0">
+									<span class="inactive first" data-value="0"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="store_ac" value="1">
+									<span class="inactive second" data-value="1"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="store_ac" value="2">
+									<span class="inactive third" data-value="2"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="store_ac" value="3">
+									<span class="inactive fourth" data-value="3"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="store_ac" value="4">
+									<span class="inactive fifth" data-value="4"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="store_ac" value="5">
+									<span class="inactive sixth" data-value="5"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="store_ac" value="6">
+									<span class="inactive seventh" data-value="6"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="store_ac" value="7">
+									<span class="inactive eighth" data-value="7"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="store_ac" value="8">
+									<span class="inactive ninth" data-value="8"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="store_ac" value="9">
+									<span class="inactive tenth" data-value="9"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="store_ac" value="10">
+									<span class="inactive eleventh" data-value="10"></span>
+								</label>
+							</div>
+						</div>
+					</div>
+				  </div>
+				  <div class="conv">
+					<p class="question subq">Product Arrangement</p>
+					<div class="answers">
+					  <div class="rate_c">
+							<div class="range_slider">
+								<label>
+									<input type="radio" data-role="none" name="product_arrangement" value="0">
+									<span class="inactive first" data-value="0"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="product_arrangement" value="1">
+									<span class="inactive second" data-value="1"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="product_arrangement" value="2">
+									<span class="inactive third" data-value="2"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="product_arrangement" value="3">
+									<span class="inactive fourth" data-value="3"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="product_arrangement" value="4">
+									<span class="inactive fifth" data-value="4"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="product_arrangement" value="5">
+									<span class="inactive sixth" data-value="5"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="product_arrangement" value="6">
+									<span class="inactive seventh" data-value="6"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="product_arrangement" value="7">
+									<span class="inactive eighth" data-value="7"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="product_arrangement" value="8">
+									<span class="inactive ninth" data-value="8"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="product_arrangement" value="9">
+									<span class="inactive tenth" data-value="9"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="product_arrangement" value="10">
+									<span class="inactive eleventh" data-value="10"></span>
+								</label>
+							</div>
+						</div>
+					</div>
+				  </div>              
+				</div>
+				</div>
+				<textarea id="feedback_enq" placeholder="Comments/Suggestions"></textarea>
+			  </div>
+		  
+		  <div class="py-2">
+		  	<a href="javascript:submitFeedback();" class="btn btn_primary">Submit</a>
+		  </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div data-role="page" data-dom-cache="true" id="my_membership" class="full_height bg_white">
+  <div data-role="header" class="inner_header" data-position="fixed" data-tap-toggle="false">
+    <div class="d-flex align-items-center justify-content-between main_header">
+      <div class="d-flex align-items-center justify-content-start"> <a href="#" data-rel="back" class="sidemenu_btn" data-role="none"> <img src="assets/images/back_btn.png" class="img-responsive" alt=""> </a>
+        <h3 class="header_title">My Membership</h3>
+      </div>
+      <!--<div class="header_right">
+        <div class="header_right_icons"> <a href="#my_profile" class="user_profile">
+          <div class="user_pic"> <img src="assets/images/user_pic.jpg" class="img-responsive" alt=""> </div>
+          <span id="profilenm_mloyal">Rohan Verma</span> </a> </div>
+      </div>-->
+    </div>
+  </div>
+  <div data-role="content" class="ui-content p-0 d-flex align-items-start bg_white">
+    <div data-role="tabs" id="contest_tabs" class="contest_tabs">
+      <div class="custom_tabs">
+        <ul>
+          <li onclick="javascript:gotomembership();"><a href="#membership">Membership</a></li>
+          <li onclick="javascript:gotomessages();"><a href="#message">Message</a></li>
+          <li onclick="javascript:gotopoints();"><a href="#points">Points</a></li>
+          <li onclick="javascript:gotorewards();"><a href="#rewards">Coupons</a></li>
+        </ul>
+      </div>
+      <div id="membership" class="ui-body-d ui-content">
+        <div class="card_section">
+          <div class="card_main">
+            <div class="card_content">
+              <div class="card_main_left">
+                <div class="card_qr" id="barimg"> <img src="assets/images/card_qr.png" class="img-responsive" alt=""> </div>
+                <h3 id="cardname">Guest</h3>
+                <p id="mType">Base Member</p>
+				<p id="cardid"></p>
+              </div>
+              <div class="card_main_right"> <img src="assets/images/card_logo.png" class="card_logo" alt=""> </div>
+            </div>
+            <div class="card_footer">
+              <div class="card_footer_left">
+                <h3 class="card_points">Points : <span id="tpoint">0</span></h3>
+              </div>
+              <div class="card_footer_right">
+                <div class="card_powered_logo"><img src="assets/images/mloyal_paytm_logo.png" class="img-responsive" alt=""></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="thumb_group1">
+          <div class="m_circle" style="border-color:#9dc0c2"> <span id="baseslab" class="active">Base</span> <a href="#mamber_plan1" data-rel="popup" data-position-to="window" data-transition="pop" class="info_icon admirer_info ui-link" aria-haspopup="true" aria-owns="mamber_plan1" aria-expanded="false">I</a> </div>
+          <div class="m_circle" style="border-color:#c0c0c0"> <span id="silverslab">Silver</span> <a href="#mamber_plan2" data-rel="popup" data-position-to="window" data-transition="pop" class="info_icon lover_info ui-link" aria-haspopup="true" aria-owns="mamber_plan2" aria-expanded="false"> I </a> </div>
+          <div class="m_circle" style="border-color:#d4af37"> <span id="goldslab">Gold</span> <a href="#mamber_plan3" data-rel="popup" data-position-to="window" data-transition="pop" class="info_icon freak_info ui-link" aria-haspopup="true" aria-owns="mamber_plan3" aria-expanded="false"> I</a> </div>
+		  <div class="m_circle" style="border-color:#e5e4e2"> <span id="platinumslab">Platinum</span> <a href="#mamber_plan4" data-rel="popup" data-position-to="window" data-transition="pop" class="info_icon freak_info ui-link" aria-haspopup="true" aria-owns="mamber_plan4" aria-expanded="false"> I</a> </div>
+
+          <div data-role="popup" id="mamber_plan1" data-theme="a" data-overlay-theme="b" class="ui-corner-all border_none">
+            <div class="membership_plan"><a href="#" data-rel="back" class="close_btn">+</a>
+              <h3>Base Member</h3>
+              <p>With your cumulative transaction billing amount with us ranging from Rs.0 to Rs.199999 you will become our Base Member.</p>
+            </div>
+          </div>
+          <div data-role="popup" id="mamber_plan2" data-theme="a" data-overlay-theme="b" class="ui-corner-all border_none">
+            <div class="membership_plan"><a href="#" data-rel="back" class="close_btn">+</a>
+              <h3>Silver Member</h3>
+              <p>With your cumulative bill ranging from Rs.200000 to Rs.449999 you will be our valuable Silver Member.</p>
+            </div>
+          </div>
+          <div data-role="popup" id="mamber_plan3" data-theme="a" data-overlay-theme="b" class="ui-corner-all border_none">
+            <div class="membership_plan"><a href="#" data-rel="back" class="close_btn">+</a>
+              <h3>Gold Member</h3>
+              <p>With your cumulative bill ranging from Rs.450000 to Rs.799999 you will be our valuable Gold Member.</p>
+            </div>
+          </div>
+          <div data-role="popup" id="mamber_plan4" data-theme="a" data-overlay-theme="b" class="ui-corner-all">
+            <div class="membership_plan"><a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+              <h3>Platinum Member</h3>
+              <p>With your cumulative billing transaction amount equals & above Rs.800000 you will become our Platinum Member.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="message" class="ui-body-d ui-content">
+			
+	  </div>
+      <div id="points" class="ui-body-d ui-content">
+
+	  </div>
+      <div id="rewards" class="ui-body-d ui-content">
+			
+	  </div>
+    </div>
+  </div>
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="footer" data-hide-during-focus="false">
+    <div class="footer_nav">
+      <ul>
+        <li><a href="#homepage"><img src="assets/images/footer_home.png" alt=""><span>Home</span></a></li>
+        <!-- <li class="active"><a href="#my_membership"><img src="assets/images/footer_my_membership.png" alt=""><span>My Membership</span></a></li> -->
+        <!--<li><a href="#chatbot"><img src="assets/images/footer_chat_bot.png" alt=""><span>Chat Bot</span></a></li>
+        <li><a href="#contactus"><img src="assets/images/footer_contact.png" alt=""><span>Contact us</span></a></li>-->
+      </ul>
+    </div>
+  </div>
+</div>
+	
+<div data-role="page" data-dom-cache="true" id="contactus" class="full_height bg_white">
+  <div data-role="header" class="inner_header" data-position="fixed" data-tap-toggle="false">
+    <div class="d-flex align-items-center justify-content-between main_header bb1">
+      <div class="d-flex align-items-center justify-content-start"> <a href="#" data-rel="back" class="sidemenu_btn" data-role="none"> <img src="assets/images/back_btn.png" class="img-responsive" alt=""> </a>
+        <h3 class="header_title">Contact us</h3>
+      </div>
+      <!--<div class="header_right">
+        <div class="header_right_icons"> <a href="#my_profile" class="user_profile">
+          <div class="user_pic"> <img src="assets/images/user_pic.jpg" class="img-responsive" alt=""> </div>
+          <span>Rohan Verma</span> </a> </div>
+      </div>-->
+    </div>
+  </div>
+  <div data-role="content" class="ui-content p-0 d-flex align-items-start bg_white">
+    <div class="w-100">
+      <div class="bb1 px-4 py-3">
+        <h4 class="mb-2">Helpline Email Id</h4>
+        <a href="#" class="primary_link d-flex align-items-center justify-content-start"> <img src="assets/images/contact_email.png" class="mr-1 icon_contact" alt=""> <span>info@godrej.com</span> </a> </div>
+      <div class="bb1 px-4 py-3">
+        <h4 class="mb-2">Customer Support Number</h4>
+        <a href="#" class="primary_link d-flex align-items-center justify-content-start"> <img src="assets/images/contact_number.png" class="mr-1 icon_contact" alt=""> <span>1800 209 5511</span> </a> </div>
+	 <div class="bb1 px-4 py-3">
+        <h4 class="mb-2">WhatsApp Support Number</h4>
+        <a href="#" class="primary_link d-flex align-items-center justify-content-start"> <img src="assets/images/contact_number.png" class="mr-1 icon_contact" alt=""> <span>9321665511</span> </a> </div>
+      <!--<div class="px-4 py-3">
+        <div class="primary_block p-3 bg_grey">
+          <h3 class="mb-2">Regional Office</h3>
+          <p>Godrej Appliances</p>
+          <p>Plant 11, Pirojshanagar, Vikholi, Mumbai</p>
+          <p>Maharastra - 400049</p>
+        </div>
+      </div>-->
+      <div class="px-4 py-3">
+        <div class="primary_block bg_grey p-3">
+          <h3 class="mb-2">Head Office</h3>
+          <p>Godrej Security Solutions</p>
+          <p>Plant Number -17, Pirojshanagar, Vikholi, Mumbai</p>
+          <p>Maharastra - 400079</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="footer" data-hide-during-focus="false">
+    <div class="footer_nav">
+      <ul>
+        <li><a href="#homepage"><img src="assets/images/footer_home.png" alt=""><span>Home</span></a></li>
+        <!-- <li><a href="#my_membership"><img src="assets/images/footer_my_membership.png" alt=""><span>My Membership</span></a></li> -->
+        <!--<li><a href="#chatbot"><img src="assets/images/footer_chat_bot.png" alt=""><span>Chat Bot</span></a></li>
+        <li><a href="#contactus"><img src="assets/images/footer_contact.png" alt=""><span>Contact us</span></a></li>-->
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div data-role="page" data-dom-cache="true" id="ematrix" class="full_height bg_white">
+  <div data-role="header" class="inner_header" data-position="fixed" data-tap-toggle="false">
+    <div class="d-flex align-items-center justify-content-between main_header bb1">
+      <div class="d-flex align-items-center justify-content-start"> <a href="#homepage" class="sidemenu_btn" data-role="none"> <img src="assets/images/back_btn.png" class="img-responsive" alt=""> </a>
+        <h3 class="header_title">Escalation Matrix</h3>
+      </div>
+      <!--<div class="header_right">
+        <div class="header_right_icons"> <a href="#my_profile" class="user_profile">
+          <div class="user_pic"> <img src="assets/images/user_pic.jpg" class="img-responsive" alt=""> </div>
+          <span>Rohan Verma</span> </a> </div>
+      </div>-->
+    </div>
+  </div>
+  <div data-role="content" class="ui-content p-0 align-items-start bg_white">
+				<table class="table mt-20">
+					<thead class="table_header">
+						<tr>
+							<th>Marketing</th>
+							<th>Name</th>
+							<th>Email Id</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Level 1</td>
+							<td>Rahila Kazi</td>
+							<td>rahila@godrej.com</td>
+						</tr>
+						<tr>
+							<td>Level 2</td>
+							<td>Fazad Photographer</td>
+							<td>farzad@godrej.com</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<table class="table mt-40">
+					<thead class="table_header">
+						<tr>
+							<th>Sales</th>
+							<th>Name</th>
+							<th>Email Id</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Level 1</td>
+							<td>Niranjan Dharap</td>
+							<td>dharap@godrej.com</td>
+						</tr>
+						<tr>
+							<td>Level 2</td>
+							<td>Sushant Bharghav</td>
+							<td>bhargava@godrej.com</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<table class="table mt-40">
+					<thead class="table_header">
+						<tr>
+							<th>Service</th>
+							<th>Name</th>
+							<th>Email Id</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Level 1</td>
+							<td>Burzin Daver</td>
+							<td>bpd@godrej.com</td>
+						</tr>
+						<tr>
+							<td>Level 2</td>
+							<td>Sushil Kadam</td>
+							<td>sushilk@godrej.com</td>
+						</tr>
+					</tbody>
+				</table>
+  </div>
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="footer" data-hide-during-focus="false">
+    <div class="footer_nav">
+      <ul>
+        <li><a href="#homepage"><img src="assets/images/footer_home.png" alt=""><span>Home</span></a></li>
+        <!-- <li><a href="#my_membership"><img src="assets/images/footer_my_membership.png" alt=""><span>My Membership</span></a></li> -->
+        <!--<li><a href="#chatbot"><img src="assets/images/footer_chat_bot.png" alt=""><span>Chat Bot</span></a></li>
+        <li><a href="#contactus"><img src="assets/images/footer_contact.png" alt=""><span>Contact us</span></a></li>-->
+      </ul>
+    </div>
+  </div>
+</div>
+<!--page-->
+
+<div data-role="page" data-dom-cache="true" id="service_enquiry" class="full_height bg_white">
+  <div data-role="header" class="inner_header" data-position="fixed" data-tap-toggle="false">
+    <div class="d-flex align-items-center justify-content-between main_header bb1">
+      <div class="d-flex align-items-center justify-content-start"> <a href="#homepage" class="sidemenu_btn" data-role="none"> <img src="assets/images/back_btn.png" class="img-responsive" alt=""> </a>
+        <h3 class="header_title">Service Enquiry</h3>
+      </div>
+      <!--<div class="header_right">
+        <div class="header_right_icons"> <a href="#my_profile" class="user_profile">
+          <div class="user_pic"> <img src="assets/images/user_pic.jpg" class="img-responsive" alt=""> </div>
+          <span>Rohan Verma</span> </a> </div>
+      </div>-->
+    </div>
+  </div>
+  <div data-role="content" class="ui-content p-20 align-items-start bg_white">
+		<div class="form-group">
+          <label class="form_label">Name*</label>
+          <div class="custom-input">
+            <input type="text" id="enquiry_name" placeholder="Name" class="form-input" data-role="none" />
+          </div>
+          <div class="clear"></div>
+        </div>
+		<div class="form-group">
+          <label class="form_label">Mobile Number*</label>
+          <div class="custom-input">
+            <input type="tel" id="enquiry_mobile" placeholder="Mobile Number" class="form-input" data-role="none" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+          </div>
+          <div class="clear"></div>
+        </div>
+        <div class="form-group">
+          <label class="form_label">Email ID*</label>
+          <div class="custom-input">
+            <input type="email" id="enquiry_email" placeholder="Email ID" class="form-input" data-role="none" />
+          </div>
+          <div class="clear"></div>
+        </div>
+		<div class="form-group">
+          <label class="form_label">Enquiry*</label>
+          <div class="custom-input">
+            <textarea id="enquiry_txt" placeholder="Enquiry Details"></textarea>
+          </div>
+          <div class="clear"></div>
+        </div>
+		<div class="py-2">
+		  	<a href="javascript:submitEnquiry();" class="btn btn_primary">Submit</a>
+		 </div>
+  </div>
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="footer" data-hide-during-focus="false">
+    <div class="footer_nav">
+      <ul>
+        <li><a href="#homepage"><img src="assets/images/footer_home.png" alt=""><span>Home</span></a></li>
+        <!-- <li><a href="#my_membership"><img src="assets/images/footer_my_membership.png" alt=""><span>My Membership</span></a></li> -->
+        <!--<li><a href="#chatbot"><img src="assets/images/footer_chat_bot.png" alt=""><span>Chat Bot</span></a></li>
+        <li><a href="#contactus"><img src="assets/images/footer_contact.png" alt=""><span>Contact us</span></a></li>-->
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!--page-->
+
+<div data-role="page" data-dom-cache="true" id="my_profile" class="full_height bg_white">
+  <div data-role="header" class="inner_header" data-position="fixed" data-tap-toggle="false">
+    <div class="d-flex align-items-center justify-content-between main_header bb1">
+      <div class="d-flex align-items-center justify-content-start"> <a href="#" data-rel="back" class="sidemenu_btn" data-role="none"> <img src="assets/images/back_btn.png" class="img-responsive" alt=""> </a>
+        <h3 class="header_title">My Profile</h3>
+      </div>
+    </div>
+  </div>
+  <div data-role="content" class="ui-content p-0 d-flex align-items-start bg_white">
+    <div class="w-100">
+		<div class="align-items-center justify-content-center d-flex p-3">
+			<a href="#" class="user_profile" style="font-size: 24px">
+			  	<div class="user_pic" style="width: 130px; height: 130px">
+				  <img src="assets/images/user_pic.jpg" class="img-responsive" alt="">
+				</div>
+			  	<span>Guest</span>
+			</a>
+		</div>
+      	<div class="my_account">
+			<ul class="my_account_inner">
+				<li><a href="#transactions">My Transactions</a></li>
+				<li><a href="#profilepage">Edit Profile</a></li>
+				<li><a href="javascript:logoutApp();">Log Out</a></li>
+			</ul>
+		</div>
+    </div>
+  </div>
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="footer" data-hide-during-focus="false">
+    <div class="footer_nav">
+      <ul>
+        <li><a href="#homepage"><img src="assets/images/footer_home.png" alt=""><span>Home</span></a></li>
+        <!-- <li><a href="#my_membership"><img src="assets/images/footer_my_membership.png" alt=""><span>My Membership</span></a></li> -->
+        <!--<li><a href="#chatbot"><img src="assets/images/footer_chat_bot.png" alt=""><span>Chat Bot</span></a></li>
+        <li><a href="#contactus"><img src="assets/images/footer_contact.png" alt=""><span>Contact us</span></a></li>-->
+      </ul>
+    </div>
+  </div>
+</div>
+<!--page-->
+
+<div data-role="page" data-dom-cache="true" id="transactions" class="full_height bg_white">
+  <div data-role="header" class="inner_header" data-position="fixed" data-tap-toggle="false">
+    <div class="d-flex align-items-center justify-content-between main_header bb1">
+      <div class="d-flex align-items-center justify-content-start"> <a href="#" data-rel="back" class="sidemenu_btn" data-role="none"> <img src="assets/images/back_btn.png" class="img-responsive" alt=""> </a>
+        <h3 class="header_title">Transactions</h3>
+      </div>
+      <!--<div class="header_right">
+        <div class="header_right_icons"> <a href="#" class="user_profile">
+          <div class="user_pic"> <img src="assets/images/user_pic.png" class="img-responsive" alt=""> </div>
+          <span id="trans_nm">Guest</span> </a> </div>
+      </div>-->
+    </div>
+  </div>
+  <div data-role="content" class="ui-content p-0 d-flex align-items-start bg_white">
+    <div class="w-100">
+      <div class="out_wrapper">
+			<div class="inner_wrapper bg-white p-0">				
+				<a href="#" class="points_bal_header">
+					<div class="d-flex align-items-center justify-content-between pl-4 pr-4">
+						<h4><span id="pointbal_head">Point Balance</span></h4>
+						<h2 class="bal_point"><span id="trans_pts">0</span></h2>
+					</div>
+				</a>
+			     <!--<div class="bb1 py-3">
+					<div class="statement_link">
+						<a href="#requestStatement" class="points_bal_btn">
+							<div class="pl-4 pr-4 w-100">
+								<div class="points_bal d-flex align-items-center">
+									<img src="assets/images/request_statement_icon.png" alt="">
+									<h4>Request Statement</h4>
+								</div>								
+							</div>								
+						</a>
+					</div>				
+					<div class="statement_link" id="suspense_acc1">
+						<a href="#unclearTransations" class="points_bal_btn">
+							<div class="pl-4 pr-4 w-100">
+								<div class="points_bal d-flex align-items-center">
+									<img src="assets/images/rupess_icon.png" alt="">
+									<h4>Unclear Transactions</h4> 
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>-->
+				<div class="recent_header">
+					<div class="pl-4 pr-4 d-flex align-items-center justify-content-between">
+						<h3 class="transfer_heading">Transaction History</h3>
+						<!-- <div class="filter_nav">
+							<a href="#" id="toggleFilter1" > <img src="assets/images/filter_icon.png" class="img-responsive" alt="" /> </a>
+						</div> -->
+					</div>
+				</div>
+			</div>	
+				
+			<div id="transfers">				
+				<div id="transfersret"></div>
+		  		<!--<div class="recent_transfer">
+					<div class="recent_transfer_header pl-4 pr-4">October 2021</div>
+					<div class="recent_block pl-4 pr-4">
+						<div class="recent_user_icon"> <img src="assets/images/pointredeem.png" class="img-responsive" alt=""/> </div>
+						<div class="recent_user_details">						
+							<p class="recent_detail_text ">Points Revoked from Godrej Industries</p>
+							<p class="recent_date">20/10/2021 10:21 AM</p>
+						</div>
+						<div class="recent_user_points"><h2 class="text_green">+200<span>Points</span></h2></div>						
+					</div>
+					<div class="recent_block pl-4 pr-4">
+						<div class="recent_user_icon"> <img src="assets/images/pointredused.png" class="img-responsive" alt=""/> </div>
+						<div class="recent_user_details">						
+							<p class="recent_detail_text ">Points Redeemed from Godrej Industries</p>
+							<p class="recent_date">20/10/2021 10:21 AM</p>
+						</div>
+						<div class="recent_user_points"><h2 class="text_red">-100<span>Points</span></h2></div>						
+					</div>
+				</div>
+		  		<div class="recent_transfer">
+					<div class="recent_transfer_header pl-4 pr-4">September 2021</div>
+					<div class="recent_block pl-4 pr-4">
+						<div class="recent_user_icon"> <img src="assets/images/pointredeem.png" class="img-responsive" alt=""/> </div>
+						<div class="recent_user_details">						
+							<p class="recent_detail_text ">Points Revoked from Godrej Industries</p>
+							<p class="recent_date">20/09/2021 10:21 AM</p>
+						</div>
+						<div class="recent_user_points"><h2 class="text_green">+200<span>Points</span></h2></div>						
+					</div>
+					<div class="recent_block pl-4 pr-4">
+						<div class="recent_user_icon"> <img src="assets/images/pointredused.png" class="img-responsive" alt=""/> </div>
+						<div class="recent_user_details">						
+							<p class="recent_detail_text">Points Redeemed from Godrej Industries</p>
+							<p class="recent_date">20/09/2021 10:21 AM</p>
+						</div>
+						<div class="recent_user_points"><h2 class="text_red">-100<span>Points</span></h2></div>						
+					</div>
+				</div>-->
+		  </div>
+		</div>
+      <div id="filter_panel1" class="filter_panel1 bg_white">
+        <div class="">
+          <div class="ui-grid-a">
+            <div class="ui-block-a">
+              <h3>Filter Transactions</h3>
+            </div>
+            <div class="ui-block-b text-right"> <a href="#" class="filter_close1" id="filterClose1">+</a> </div>
+          </div>
+          <div class="padding0_10px">
+            <label class="mb-0 custom_check">
+              <input type="radio" name="filter_transaction" id="filter_all" data-role="none" value="All" data-cacheval="false" />
+              <span class="custom_radio"></span> All </label>
+          </div>
+          <div class="padding0_10px">
+            <label class="mb-0 custom_check">
+              <input type="radio" name="filter_transaction" id="filter_recieved" data-role="none" value="Gift" data-cacheval="false" />
+              <span class="custom_radio"></span> Received </label>
+          </div>
+          <div class="padding0_10px">
+            <label class="mb-0 custom_check">
+              <input type="radio" name="filter_transaction" id="filter_redeemed" data-role="none" value="Redeem" data-cacheval="false" />
+              <span class="custom_radio"></span> Redeemed </label>
+          </div>
+          <div class="padding0_10px">
+            <label class="mb-0 custom_check">
+              <input type="radio" name="filter_transaction" id="filter_revoked" data-role="none" value="Revoke" data-cacheval="false" />
+              <span class="custom_radio"></span> Revoked </label>
+          </div>
+        </div>
+      </div>
+	  <div class="overlay"></div>
+    </div>
+  </div>
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="footer" data-hide-during-focus="false">
+    <div class="footer_nav">
+      <ul>
+        <li><a href="#homepage"><img src="assets/images/footer_home.png" alt=""><span>Home</span></a></li>
+        <!-- <li><a href="#my_membership"><img src="assets/images/footer_my_membership.png" alt=""><span>My Membership</span></a></li> -->
+        <!--<li><a href="#chatbot"><img src="assets/images/footer_chat_bot.png" alt=""><span>Chat Bot</span></a></li>
+        <li><a href="#contactus"><img src="assets/images/footer_contact.png" alt=""><span>Contact us</span></a></li>-->
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!--page-->
+<div data-role="page" data-dom-cache="true" id="transactions_register" class="full_height bg_white">
+  <div data-role="header" class="inner_header" data-position="fixed" data-tap-toggle="false">
+    <div class="d-flex align-items-center justify-content-between main_header bb1">
+      <div class="d-flex align-items-center justify-content-start"> <a href="#" data-rel="back" class="sidemenu_btn" data-role="none"> <img src="assets/images/back_btn.png" class="img-responsive" alt=""> </a>
+        <h3 class="header_title">Transactions</h3>
+      </div>
+      <!--<div class="header_right">
+        <div class="header_right_icons"> <a href="#" class="user_profile">
+          <div class="user_pic"> <img src="assets/images/user_pic.png" class="img-responsive" alt=""> </div>
+          <span id="trans_nm">Guest</span> </a> </div>
+      </div>-->
+    </div>
+  </div>
+  <div data-role="content" class="ui-content p-0 align-items-start bg_white">
+    <div id="transactions_register_div"></div>
+  </div>
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="footer" data-hide-during-focus="false">
+    <div class="footer_nav">
+      <ul>
+        <li><a href="#homepage"><img src="assets/images/footer_home.png" alt=""><span>Home</span></a></li>
+        <!-- <li><a href="#my_membership"><img src="assets/images/footer_my_membership.png" alt=""><span>My Membership</span></a></li> -->
+        <!--<li><a href="#chatbot"><img src="assets/images/footer_chat_bot.png" alt=""><span>Chat Bot</span></a></li>
+        <li><a href="#contactus"><img src="assets/images/footer_contact.png" alt=""><span>Contact us</span></a></li>-->
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<!--page-->
+<div data-role="page" data-dom-cache="true" id="checkwarrantypg" class="full_height bg_white">
+  <div data-role="header" class="inner_header" data-position="fixed" data-tap-toggle="false">
+    <div class="d-flex align-items-center justify-content-between main_header bb1">
+      <div class="d-flex align-items-center justify-content-start"> <a href="#homepage" class="sidemenu_btn" data-role="none"> <img src="assets/images/back_btn.png" class="img-responsive" alt=""> </a>
+        <h3 class="header_title">Check Warranty</h3>
+      </div>
+    </div>
+  </div>
+  <div data-role="content" class="ui-content p-20 align-items-start bg_white">
+		<!--<div class="form-group">
+          <label class="form_label">Name*</label>
+          <div class="custom-input">
+            <input type="text" id="checkwarranty_name" placeholder="Name" class="form-input" data-role="none" />
+          </div>
+          <div class="clear"></div>
+        </div>-->
+		<div class="form-group">
+          <label class="form_label">Mobile Number*</label>
+          <div class="custom-input">
+            <input type="tel" id="checkwarranty_mobile" placeholder="Mobile Number" class="form-input" data-role="none" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+          </div>
+          <div class="clear"></div>
+        </div>
+        <div class="form-group">
+          <label class="form_label">Product Code*</label>
+          <div class="custom-input">
+            <input type="text" id="checkwarranty_pcode" placeholder="Product Code" class="form-input" data-role="none" />
+          </div>
+          <div class="clear"></div>
+        </div>
+		<div class="date_select">
+								<div class="ui-grid-a">
+									<div class="ui-block-a padding0_5px">
+										<label class=" mb-0">Start date of warranty*</label>
+										<input type="date" class="date_input" data-role="none" placeholder="From Date" id="checkwarrantyfrom" /> </div>
+									<div class="ui-block-b padding0_5px">
+										<label class=" mb-0">End date of warranty*</label>
+										<input type="date" class="date_input" data-role="none" placeholder="To Date" id="checkwarrantyto" /> </div>
+								</div>
+		</div>
+		<div class="py-2">
+		  	<a href="javascript:checkWarranty_update();" class="btn btn_primary">Submit</a>
+		 </div>
+  </div>
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="footer" data-hide-during-focus="false">
+    <div class="footer_nav">
+      <ul>
+        <li><a href="#homepage"><img src="assets/images/footer_home.png" alt=""><span>Home</span></a></li>
+        <!-- <li><a href="#my_membership"><img src="assets/images/footer_my_membership.png" alt=""><span>My Membership</span></a></li> -->
+        <!--<li><a href="#chatbot"><img src="assets/images/footer_chat_bot.png" alt=""><span>Chat Bot</span></a></li>
+        <li><a href="#contactus"><img src="assets/images/footer_contact.png" alt=""><span>Contact us</span></a></li>-->
+      </ul>
+    </div>
+  </div>
+</div>
+<!--page-->
+	<div data-role="page" data-dom-cache="true" id="genuineproductpg" class="full_height bg_white">
+	  <div data-role="header" class="inner_header" data-position="fixed" data-tap-toggle="false">
+		<div class="d-flex align-items-center justify-content-between main_header bb1">
+		  <div class="d-flex align-items-center justify-content-start">
+			  <a href="#" data-rel="back" class="sidemenu_btn" data-role="none"> <img src="assets/images/back_btn.png" class="img-responsive" alt=""> </a>
+			<h3 class="header_title">Product Details</h3>
+		  </div>
+		 <div class="header_right">
+			<div class="header_right_icons d-flex align-items-center"> 
+				<!-- <a href="javascript:viewcart();" class="cart_btn"><img src="assets/images/cart.png" class="img-responsive" alt=""></a>12/30/2021 -->
+			  </div>
+		  </div>	
+		</div>
+		  <div class="px-4 py-3 bg_sky_blue_light">
+			  <h3 class="text_primary">Thanks for buying genuine Godrej product</h3>
+		  </div>
+	  </div>
+	  <div data-role="content" class="ui-content p-10 p-4 align-items-start bg_white">
+
+		  <div id="geneuine_div"></div>
+
+	  </div>
+	</div>
+<!--page-->
+
+<div data-role="page" data-dom-cache="true" id="requestStatement" class="full_height bg_white">
+  <div data-role="header" class="inner_header" data-position="fixed" data-tap-toggle="false">
+    <div class="d-flex align-items-center justify-content-between main_header bb1">
+      <div class="d-flex align-items-center justify-content-start"> <a href="#" data-rel="back" class="sidemenu_btn" data-role="none"> <img src="assets/images/back_btn.png" class="img-responsive" alt=""> </a>
+        <h3 class="header_title">Request Statement</h3>
+      </div>
+    </div>
+  </div>
+  <div data-role="content" class="ui-content p-0 d-flex align-items-start bg_white">
+    <div class="w-100">
+      <div class="out_wrapper">
+			<div class="inner_wrapper bg-white mt-20">
+				<div class="ui-grid-solo" id="retchoice_emailstats_div">
+					<div class="statment_sel_block">
+						<label>Select Transaction Type</label>
+						<div class="statment_sel_block_inner mt-20">
+							<select name="retchoice_emailstats" class="statement_select font_16" id="" data-role="none">
+								<option value="purchase" id="retchoice_emailstats_purchase">My Purchase</option>
+								<option value="sale" id="retchoice_emailstats_sale">My Sale</option>
+							</select>							
+						</div>
+					</div>
+				</div>
+				<div class="statment_sel_block">
+					<div class="statment_sel_block_inner">
+						<label class="statement_select mb-0" id="toggleFilter2">Select Time Period</label>
+					</div>
+				</div>
+				
+				<div class="mt-20">
+					<a href="#" class="btn btn_primary">Proceed</a>
+				</div>
+				<div class="filter_panel1" id="filter_panel2" style="display: none">
+					<div class="ui-grid-a">
+						<div class="ui-block-a">
+							<h3>Select Time Period</h3>
+						</div>
+						<div class="ui-block-b text-right"> <a href="#" class="filter_close1" id="filterClose2">+</a> </div>
+					</div>
+					<div name="filter_transaction2_div" id="filter_transaction2_div">						
+						<div name="estmt" id="estmt">
+							<div class="padding0_10px">
+								<label class="mb-0 custom_check">
+								<input type="radio" name="input_email_statement" id="radio-1-month" data-role="none" value="last1month" data-cacheval="false" checked/> <span class="custom_radio"></span> Last 1 Month 
+								</label>
+							</div>
+							<div class="padding0_10px">
+								<label class="mb-0 custom_check">
+									<input type="radio" name="input_email_statement" id="radio-3-month" data-role="none" value="last3months" data-cacheval="false" /> <span class="custom_radio"></span> Last 3 Months </label>
+							</div>
+							<div class="padding0_10px">
+								<label class="mb-0 custom_check">
+									<input type="radio" name="input_email_statement" id="radio-6-month" data-role="none" value="last6months" data-cacheval="false" /> <span class="custom_radio"></span> Last 6 Months </label>
+							</div>
+							<div class="padding0_10px">
+								<label class="mb-0 custom_check">
+									<input type="radio" name="input_email_statement" id="radio-1-year" data-role="none" value="last1year" data-cacheval="false" /> <span class="custom_radio"></span> Last 1 Year </label>
+							</div>
+							<div class="padding0_10px">
+								<label class="mb-0 custom_check">
+									<input type="radio" name="input_email_statement" id="radio-sel" data-role="none" value="selectduration" data-cacheval="false" /> <span class="custom_radio"></span> Custom Date </label>
+							</div>
+							<div class="clear mt-10"></div>
+							<div class="date_select" id="dateduration" style="display:none">
+								<div class="ui-grid-a">
+									<div class="ui-block-a padding0_5px">
+										<label class=" mb-0">From Date</label>
+										<input type="date" class="date_input" data-role="none" placeholder="From Date" id="durationfrom" /> </div>
+									<div class="ui-block-b padding0_5px">
+										<label class=" mb-0">To Date</label>
+										<input type="date" class="date_input" data-role="none" placeholder="To Date" id="durationto" /> </div>
+								</div>
+							</div>
+							<a href="javascript:sendemailstatement();" class="btn btn_primary mt-10">Proceed</a>
+						</div>
+					</div>						
+				</div>
+				<div class="overlay"></div>
+			</div>	
+		</div>      
+	  <div class="overlay"></div>
+    </div>
+  </div>
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="footer" data-hide-during-focus="false">
+    <div class="footer_nav">
+      <ul>
+        <li><a href="#homepage"><img src="assets/images/footer_home.png" alt=""><span>Home</span></a></li>
+        <!-- <li><a href="#my_membership"><img src="assets/images/footer_my_membership.png" alt=""><span>My Membership</span></a></li> -->
+        <!--<li><a href="#chatbot"><img src="assets/images/footer_chat_bot.png" alt=""><span>Chat Bot</span></a></li>
+        <li><a href="#contactus"><img src="assets/images/footer_contact.png" alt=""><span>Contact us</span></a></li>-->
+      </ul>
+    </div>
+  </div>
+</div>
+<!--page--> 
+
+
+<div data-role="page" data-dom-cache="true" id="unclearTransations" class="full_height bg_white">
+  <div data-role="header" class="inner_header" data-position="fixed" data-tap-toggle="false">
+    <div class="d-flex align-items-center justify-content-between main_header bb1">
+      <div class="d-flex align-items-center justify-content-start"> <a href="#" data-rel="back" class="sidemenu_btn" data-role="none"> <img src="assets/images/back_btn.png" class="img-responsive" alt=""> </a>
+        <h3 class="header_title">Unclear Transactions</h3>
+      </div>
+    </div>
+  </div>
+  <div data-role="content" class="ui-content p-0 d-flex align-items-start bg_white">
+    <div class="w-100">
+      <div class="out_wrapper">
+			<div class="inner_wrapper bg-white p-0">
+				<div class="unclear_transactions">
+					
+					<p class="recent_transfer_header pl-4 pr-4">October 2021</p>
+					<div class="unclear_transaction_inner  pl-4 pr-4">
+						<p class="recent_detail_text">Txn No: 87873899</p>
+						<p class="recent_detail_text">Sale of Rs.2000 By  9876543102<br/></p>
+					</div>
+
+					</div>
+			</div>	
+		</div>      
+	  <div class="overlay"></div>
+    </div>
+  </div>
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="footer" data-hide-during-focus="false">
+    <div class="footer_nav">
+      <ul>
+        <li><a href="#homepage"><img src="assets/images/footer_home.png" alt=""><span>Home</span></a></li>
+        <!-- <li><a href="#my_membership"><img src="assets/images/footer_my_membership.png" alt=""><span>My Membership</span></a></li> -->
+        <!--<li><a href="#chatbot"><img src="assets/images/footer_chat_bot.png" alt=""><span>Chat Bot</span></a></li>
+        <li><a href="#contactus"><img src="assets/images/footer_contact.png" alt=""><span>Contact us</span></a></li>-->
+      </ul>
+    </div>
+  </div>
+</div>
+	
+<div data-role="page" data-dom-cache="true" id="pointPage" class="full_height bg_white">
+  <div data-role="header" class="inner_header" data-position="fixed" data-tap-toggle="false">
+    <div class="d-flex align-items-center justify-content-between main_header">
+      <div class="d-flex align-items-center justify-content-start"> <a href="#" data-rel="back" class="sidemenu_btn" data-role="none"> <img src="assets/images/back_btn.png" class="img-responsive" alt=""> </a>
+        <h3 class="header_title">Redeem Points</h3>
+      </div>
+    </div>
+	  <div class="bg-grey p-3">
+	  <p class="text-center font_500">Enter your UPI ID or Paytm Wallet Number</p>
+	  </div>
+  </div>
+  <div data-role="content" class="ui-content p-0 d-flex align-items-start bg_white">
+    <div class="w-100 pt-30">
+      <div class="out_wrapper pt-4 px-4">
+			<div class="inner_wrapper bg-white pb-0">
+				<div class="form-group points_form py-3">
+					<label>UPI ID / Paytm Wallet Number</label>
+					<input type="text" id="kyc_paytm_id" placeholder="UPI ID / Paytm Wallet Number" data-role="none" />
+				</div>
+				<div class="form-group points_form py-3">
+					<label>Points</label>
+					<input type="number" id="kyc_paytm_amount" placeholder="Points" data-role="none" />
+				</div>
+				<!--<div class="or_text mb-20">OR</div>
+				<div class="form-group points_form py-3">
+					<label>PAYTM NUMBER</label>
+					<input type="tel" id="kyc_paytm_no" placeholder="PAYTM NUMBER" data-role="none" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+				</div>-->
+				<div class="py-2">
+					<a href="javascript:submitPaytm();" class="btn btn_primary">Submit</a>
+				</div>
+			</div>	
+		</div>   
+    </div>
+  </div>
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="footer" data-hide-during-focus="false">
+    <div class="footer_nav">
+      <ul>
+        <li><a href="#homepage"><img src="assets/images/footer_home.png" alt=""><span>Home</span></a></li>
+        <!-- <li><a href="#my_membership"><img src="assets/images/footer_my_membership.png" alt=""><span>My Membership</span></a></li> -->
+        <!--<li><a href="#chatbot"><img src="assets/images/footer_chat_bot.png" alt=""><span>Chat Bot</span></a></li>
+        <li><a href="#contactus"><img src="assets/images/footer_contact.png" alt=""><span>Contact us</span></a></li>-->
+      </ul>
+    </div>
+  </div>
+</div>
+	
+<div data-role="page" data-dom-cache="true" id="faqs" class="full_height bg_white">
+  <div data-role="header" class="inner_header" data-position="fixed" data-tap-toggle="false">
+    <div class="d-flex align-items-center justify-content-between main_header">
+      <div class="d-flex align-items-center justify-content-start"> <a href="#" data-rel="back" class="sidemenu_btn" data-role="none"> <img src="assets/images/back_btn.png" class="img-responsive" alt=""> </a>
+        <h3 class="header_title">FAQs</h3>
+      </div>
+    </div>
+  </div>
+  <div data-role="content" class="ui-content p-0 d-flex align-items-start bg_white">
+    <div class="w-100">
+      <div class="out_wrapper">
+		<div class="inner_wrapper bg-white p-0">
+			<div class="bg-grey p-3">
+				<h3 class="faq_heading">Frequently Asked Questions</h3>
+			</div>
+				<div class="faq_section">
+					<ul class="faqs">
+						<li>
+							<a class="faq_head" onclick="slide_this(this)">
+								<h3 class="faq_title">Lorem ipsum dolor sit amet?</h3>
+								<div class="points_arrow"><img src="assets/images/arrow_green.png" class="img-responsive" alt=""></div>
+							</a>							
+							<div class="faq_text">
+								<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
+							</div>
+						</li>
+						<li>
+							<a class="faq_head" onclick="slide_this(this)">
+								<h3 class="faq_title">Lorem ipsum dolor sit amet?</h3>
+								<div class="points_arrow"><img src="assets/images/arrow_green.png" class="img-responsive" alt=""></div>
+							</a>							
+							<div class="faq_text">
+								<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
+							</div>
+						</li>
+						<li>
+							<a class="faq_head" onclick="slide_this(this)">
+								<h3 class="faq_title">Lorem ipsum dolor sit amet?</h3>
+								<div class="points_arrow"><img src="assets/images/arrow_green.png" class="img-responsive" alt=""></div>
+							</a>							
+							<div class="faq_text">
+								<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
+							</div>
+						</li>
+						<li>
+							<a class="faq_head" onclick="slide_this(this)">
+								<h3 class="faq_title">Lorem ipsum dolor sit amet?</h3>
+								<div class="points_arrow"><img src="assets/images/arrow_green.png" class="img-responsive" alt=""></div>
+							</a>							
+							<div class="faq_text">
+								<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
+							</div>
+						</li>
+						<li>
+							<a class="faq_head" onclick="slide_this(this)">
+								<h3 class="faq_title">Lorem ipsum dolor sit amet?</h3>
+								<div class="points_arrow"><img src="assets/images/arrow_green.png" class="img-responsive" alt=""></div>
+							</a>							
+							<div class="faq_text">
+								<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
+							</div>
+						</li>
+					</ul>
+				</div>
+		</div>	
+	</div>  
+    </div>
+  </div>
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="footer" data-hide-during-focus="false">
+    <div class="footer_nav">
+      <ul>
+        <li><a href="#homepage"><img src="assets/images/footer_home.png" alt=""><span>Home</span></a></li>
+        <!-- <li><a href="#my_membership"><img src="assets/images/footer_my_membership.png" alt=""><span>My Membership</span></a></li> -->
+        <!--<li><a href="#chatbot"><img src="assets/images/footer_chat_bot.png" alt=""><span>Chat Bot</span></a></li>
+        <li><a href="#contactus"><img src="assets/images/footer_contact.png" alt=""><span>Contact us</span></a></li>-->
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div data-role="page" data-dom-cache="true" id="scanpg" class="full_height bg_white">
+  <div data-role="header" class="inner_header" data-position="fixed" data-tap-toggle="false">
+    <div class="d-flex align-items-center justify-content-between main_header">
+      <div class="d-flex align-items-center justify-content-start"> <a href="#" data-rel="back" class="sidemenu_btn" data-role="none"> <img src="assets/images/back_btn.png" class="img-responsive" alt=""> </a>
+        <h3 class="header_title">Scan</h3>
+      </div>
+    </div>
+	  <div class="bg-grey p-3">
+	  <p class="text-center font_500">Enter your UPI ID or Paytm Wallet Number</p>
+	  </div>
+  </div>
+  <div data-role="content" class="ui-content p-0 d-flex align-items-start bg_white">
+    <div class="w-100 pt-30">
+      <div class="out_wrapper pt-4 px-4">
+			<div class="inner_wrapper bg-white pb-0">
+				<div class="form-group points_form py-3">
+					<label>UPI ID</label>
+					<input type="text" placeholder="UPI ID" data-role="none">
+				</div>
+
+				<input type="hidden" id="scan_code">
+				<div class="py-2">
+					<a href="#" class="btn btn_primary">Submit</a>
+				</div>
+			</div>	
+		</div>   
+    </div>
+  </div>
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="footer" data-hide-during-focus="false">
+    <div class="footer_nav">
+      <ul>
+        <li><a href="#homepage"><img src="assets/images/footer_home.png" alt=""><span>Home</span></a></li>
+        <!-- <li><a href="#my_membership"><img src="assets/images/footer_my_membership.png" alt=""><span>My Membership</span></a></li> -->
+        <!--<li><a href="#chatbot"><img src="assets/images/footer_chat_bot.png" alt=""><span>Chat Bot</span></a></li>
+        <li><a href="#contactus"><img src="assets/images/footer_contact.png" alt=""><span>Contact us</span></a></li>-->
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div data-role="page" data-dom-cache="true" id="share" class="full_height bg_white">
+  <div data-role="header" class="inner_header" data-position="fixed" data-tap-toggle="false">
+    <div class="d-flex align-items-center justify-content-between main_header">
+      <div class="d-flex align-items-center justify-content-start"> <a href="#" data-rel="back" class="sidemenu_btn" data-role="none"> <img src="assets/images/back_btn.png" class="img-responsive" alt=""> </a>
+        <h3 class="header_title">Category List</h3>
+      </div>
+    </div>
+  </div>
+  <div data-role="content" class="ui-content p-0 d-flex align-items-start bg_white">
+    <div class="primary_section" style="margin: 0 auto;">
+			  	  <div class="primary_section_inner">
+				  		<div id="shopzone"></div>
+				  </div>
+			  </div>
+  </div>
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="footer" data-hide-during-focus="false">
+    <div class="footer_nav">
+      <ul>
+        <li><a href="#homepage"><img src="assets/images/footer_home.png" alt=""><span>Home</span></a></li>
+        <!-- <li><a href="#my_membership"><img src="assets/images/footer_my_membership.png" alt=""><span>My Membership</span></a></li> -->
+        <!--<li><a href="#chatbot"><img src="assets/images/footer_chat_bot.png" alt=""><span>Chat Bot</span></a></li>
+        <li><a href="#contactus"><img src="assets/images/footer_contact.png" alt=""><span>Contact us</span></a></li>-->
+      </ul>
+    </div>
+  </div>
+</div>
+	
+	
+<div data-role="page" data-dom-cache="true" id="rewardPage" class="full_height bg_white">
+  <div data-role="header" class="inner_header" data-position="fixed" data-tap-toggle="false">
+    <div class="d-flex align-items-center justify-content-between main_header">
+      <div class="d-flex align-items-center justify-content-start"> <a href="#" data-rel="back" class="sidemenu_btn" data-role="none"> <img src="assets/images/back_btn.png" class="img-responsive" alt=""> </a>
+        <h3 class="header_title">Rewards</h3>
+      </div>
+    </div>
+  </div>
+  <div data-role="content" class="ui-content d-flex align-items-start bg_white">
+   		<div id="rewards_div" class="w-100"></div>
+  </div>
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="footer" data-hide-during-focus="false">
+    <div class="footer_nav">
+      <ul>
+        <li><a href="#homepage"><img src="assets/images/footer_home.png" alt=""><span>Home</span></a></li>
+        <!-- <li><a href="#my_membership"><img src="assets/images/footer_my_membership.png" alt=""><span>My Membership</span></a></li> -->
+        <!--<li><a href="#chatbot"><img src="assets/images/footer_chat_bot.png" alt=""><span>Chat Bot</span></a></li>
+        <li><a href="#contactus"><img src="assets/images/footer_contact.png" alt=""><span>Contact us</span></a></li>-->
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div data-role="page" data-dom-cache="true" id="rewardPage1" class="full_height bg_white">
+  <div data-role="header" class="inner_header" data-position="fixed" data-tap-toggle="false">
+    <div class="d-flex align-items-center justify-content-between main_header">
+      <div class="d-flex align-items-center justify-content-start"> <a href="#" data-rel="back" class="sidemenu_btn" data-role="none"> <img src="assets/images/back_btn.png" class="img-responsive" alt=""> </a>
+        <h3 class="header_title">Rewards</h3>
+      </div>
+    </div>
+  </div>
+  <div data-role="content" class="ui-content p-0 d-flex align-items-start bg_white">
+   		<div data-role="tabs" id="rewardt_tabs" class="reward_tabs w-100 p-0">
+		  <div class="bg-grey px-3 d-flex align-items-center justify-content-between">
+			<ul class="d-flex align-items-center justify-content-center">
+			  <li><a href="#active" data-ajax="false">Active</a></li>
+			  <li><a href="#expired" data-ajax="false">Expired</a></li>
+			</ul>
+			  <!--<div class="filter_nav">
+			  		<a href="#" ><img src="assets/images/filter_icon.png" class="img-responsive" alt=""></a>
+			  </div>-->
+		  </div>
+		  <div id="active" class="ui-body-d ui-content">
+			<div class="reward_section d-flex align-items-start justify-content-between flex-wrap p-3">
+			  	<a class="reward_block" href="#reward_details">
+					<div class="reward_img"><img src="assets/images/dominos.png" class="img-responsive" alt=""></div>
+					<div class="reward_brief">
+						<p>Domino's 30% off upto Rs.200</p>
+					</div>
+				</a>
+			  	<a class="reward_block">
+					<div class="reward_img"><img src="assets/images/pizza_hut.png" class="img-responsive" alt=""></div>
+					<div class="reward_brief">
+						<p>Pizza Hut upto Rs.200</p>
+					</div>
+				</a>
+			  	<a class="reward_block">
+					<div class="reward_img"><img src="assets/images/coin_dcx.png" class="img-responsive" alt=""></div>
+					<div class="reward_brief">
+						<p>CoinDCX Rs.100 Off</p>
+					</div>
+				</a>
+			  	<a class="reward_block">
+					<div class="reward_img"><img src="assets/images/dominos.png" class="img-responsive" alt=""></div>
+					<div class="reward_brief">
+						<p>Domino's 30% off upto Rs.200</p>
+					</div>
+				</a>
+			  	<a class="reward_block">
+					<div class="reward_img"><img src="assets/images/pizza_hut.png" class="img-responsive" alt=""></div>
+					<div class="reward_brief">
+						<p>Pizza Hut upto Rs.200</p>
+					</div>
+				</a>
+			  	<a class="reward_block">
+					<div class="reward_img"><img src="assets/images/coin_dcx.png" class="img-responsive" alt=""></div>
+					<div class="reward_brief">
+						<p>CoinDCX Rs.100 Off</p>
+					</div>
+				</a>
+			  </div>
+		  </div>
+		  <div id="expired" class="ui-body-d ui-content">
+				<div class="reward_section d-flex align-items-start justify-content-between flex-wrap p-3">
+					<div class="reward_block expired">
+						<div class="reward_img"><img src="assets/images/dominos.png" class="img-responsive" alt=""></div>
+						<div class="reward_brief">
+							<p>Domino's 30% off upto Rs.200</p>
+						</div>
+					</div>
+					<div class="reward_block expired">
+						<div class="reward_img"><img src="assets/images/pizza_hut.png" class="img-responsive" alt=""></div>
+						<div class="reward_brief">
+							<p>Pizza Hut upto Rs.200</p>
+						</div>
+					</div>
+					<div class="reward_block expired">
+						<div class="reward_img"><img src="assets/images/coin_dcx.png" class="img-responsive" alt=""></div>
+						<div class="reward_brief">
+							<p>CoinDCX Rs.100 Off</p>
+						</div>
+					</div>
+					<div class="reward_block expired">
+						<div class="reward_img"><img src="assets/images/dominos.png" class="img-responsive" alt=""></div>
+						<div class="reward_brief">
+							<p>Domino's 30% off upto Rs.200</p>
+						</div>
+					</div>
+					<div class="reward_block expired">
+						<div class="reward_img"><img src="assets/images/pizza_hut.png" class="img-responsive" alt=""></div>
+						<div class="reward_brief">
+							<p>Pizza Hut upto Rs.200</p>
+						</div>
+					</div>
+					<div class="reward_block expired">
+						<div class="reward_img"><img src="assets/images/coin_dcx.png" class="img-responsive" alt=""></div>
+						<div class="reward_brief">
+							<p>CoinDCX Rs.100 Off</p>
+						</div>
+					</div>
+				  </div>
+		  </div>
+		</div>
+  </div>
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="footer" data-hide-during-focus="false">
+    <div class="footer_nav">
+      <ul>
+        <li><a href="#homepage"><img src="assets/images/footer_home.png" alt=""><span>Home</span></a></li>
+        <!-- <li><a href="#my_membership"><img src="assets/images/footer_my_membership.png" alt=""><span>My Membership</span></a></li> -->
+        <!--<li><a href="#chatbot"><img src="assets/images/footer_chat_bot.png" alt=""><span>Chat Bot</span></a></li>
+        <li><a href="#contactus"><img src="assets/images/footer_contact.png" alt=""><span>Contact us</span></a></li>-->
+      </ul>
+    </div>
+  </div>
+</div>
+	
+	
+<div data-role="page" data-dom-cache="true" id="reward_details" class="full_height bg_white">
+  <div data-role="header" class="inner_header bg_transparent" data-position="fixed" data-tap-toggle="false">
+    <div class="d-flex align-items-center justify-content-between main_header">
+      <div class="d-flex align-items-center justify-content-start"> <a href="#" data-rel="back" class="sidemenu_btn" data-role="none"> <img src="assets/images/back_btn.png" class="img-responsive" alt=""> </a>
+		  <h3 class="header_title" id="rw_header">Rewards</h3>
+      </div>
+    </div>
+  </div>
+  <div data-role="content" class="ui-content p-0 d-flex align-items-start bg_white">
+   		<div class="out_wrapper">
+	  		<div class="inner_wrapper p-0">
+				<!-- <img src="assets/images/Dominos_640x320_Banner.jpg" class="img-responsive" alt=""> -->
+				<div class="p-4">
+					<!--<div class="bb1 pt-2 pb-30">
+						<h2>Buy 1 Get 1 Free</h2>
+						<p>Voucher won for paying using paytm only on november 10, 2021. Voucher available in Vouchers and deal Section.</p>
+					</div>-->
+					<div class="bb1 py-2 mb-4">
+						<div class="d-flex align-items-center justify-content-start">
+							<img src="assets/images/date_icon.png" class="input_icons mr-2 mt-0" alt="">
+							<p id="rw_date">Valid Till :</p>
+						</div>
+					</div>
+					<div class="code_group pb-4 bb1">
+						<label class="font_sm">Code</label>
+						<div class="coupon-box d-flex align-items-center" id="rw_coupon-box">
+							<!-- <input type="text" data-role="none" class="coupon_code_input" value="PTNKIHI77399">
+							<button class="btn_coupon" data-role="none">Copy</button> -->
+						</div>
+					</div>
+					<!--<div class="py-4 bb1">
+						<h3 class="mb-20">How to Avail</h3>
+						<p class="mb-1">Click on the Redeem Now Button and select the items of your choice</p>
+						<p class="mb-1">Enter the coupon code at the time of checkout to avail the offer.</p>
+					</div>
+					<div class="py-4 bb1">
+						<h3 class="mb-20 text-grey">Terms and Conditions</h3>
+						<p class="mb-1">Offer is available at dominos website</p>
+						<p class="mb-1">Offer is valid once per customer</p>
+					</div>
+					<div class="p-2" id="reward_division">
+						<a href="#" class="btn btn_primary" id="rewlink">Redeem Now</a>
+					</div>-->
+				</div>
+			</div>
+	    </div>
+  </div>
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="footer" data-hide-during-focus="false">
+    <div class="footer_nav">
+      <ul>
+        <li><a href="#homepage"><img src="assets/images/footer_home.png" alt=""><span>Home</span></a></li>
+        <!-- <li><a href="#my_membership"><img src="assets/images/footer_my_membership.png" alt=""><span>My Membership</span></a></li> -->
+        <!--<li><a href="#chatbot"><img src="assets/images/footer_chat_bot.png" alt=""><span>Chat Bot</span></a></li>
+        <li><a href="#contactus"><img src="assets/images/footer_contact.png" alt=""><span>Contact us</span></a></li>-->
+      </ul>
+    </div>
+  </div>
+</div>
+		
+<div data-role="page" data-dom-cache="true" id="subcat" class="full_height bg_white">
+  <div data-role="header" class="inner_header" data-position="fixed" data-tap-toggle="false">
+    <div class="d-flex align-items-center justify-content-between main_header">
+      <div class="d-flex align-items-center justify-content-start"> <a href="#" data-rel="back" class="sidemenu_btn" data-role="none"> <img src="assets/images/back_btn.png" class="img-responsive" alt=""> </a>
+        <h3 class="header_title" id="cat_header_subcat">Category List</h3>
+      </div>
+    </div>
+  </div>
+  <div data-role="content" class="ui-content p-0 d-flex align-items-start bg_white">
+	<div class="primary_section w-100" style="margin: 0 auto;">
+			  	  <div class="primary_section_inner">
+				  		<div id="subcatlist"></div>
+				  </div>
+			  </div>
+  </div>
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="footer" data-hide-during-focus="false">
+    <div class="footer_nav">
+      <ul>
+        <li><a href="#homepage"><img src="assets/images/footer_home.png" alt=""><span>Home</span></a></li>
+        <!-- <li><a href="#my_membership"><img src="assets/images/footer_my_membership.png" alt=""><span>My Membership</span></a></li> -->
+        <!--<li><a href="#chatbot"><img src="assets/images/footer_chat_bot.png" alt=""><span>Chat Bot</span></a></li>
+        <li><a href="#contactus"><img src="assets/images/footer_contact.png" alt=""><span>Contact us</span></a></li>-->
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div data-role="page" data-dom-cache="true" id="subcat2" class="full_height bg_white">
+  <div data-role="header" class="inner_header" data-position="fixed" data-tap-toggle="false">
+    <div class="d-flex align-items-center justify-content-between main_header">
+      <div class="d-flex align-items-center justify-content-start"> <a href="#" data-rel="back" class="sidemenu_btn" data-role="none"> <img src="assets/images/back_btn.png" class="img-responsive" alt=""> </a>
+        <h3 class="header_title" id="cat_header_subcat2">Category List</h3>
+      </div>
+    </div>
+  </div>
+  <div data-role="content" class="ui-content p-0 d-flex align-items-start bg_white">
+	<div class="primary_section w-100" style="margin: 0 auto;">
+			  	  <div class="primary_section_inner">
+				  		<div id="subcatlist2"></div>
+				  </div>
+			  </div>
+  </div>
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="footer" data-hide-during-focus="false">
+    <div class="footer_nav">
+      <ul>
+        <li><a href="#homepage"><img src="assets/images/footer_home.png" alt=""><span>Home</span></a></li>
+        <!-- <li><a href="#my_membership"><img src="assets/images/footer_my_membership.png" alt=""><span>My Membership</span></a></li> -->
+        <!--<li><a href="#chatbot"><img src="assets/images/footer_chat_bot.png" alt=""><span>Chat Bot</span></a></li>
+        <li><a href="#contactus"><img src="assets/images/footer_contact.png" alt=""><span>Contact us</span></a></li>-->
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div data-role="page" data-dom-cache="true" id="products" class="full_height bg_white">
+  <div data-role="header" class="inner_header" data-position="fixed" data-tap-toggle="false">
+    <div class="d-flex align-items-center justify-content-between main_header">
+      <div class="d-flex align-items-center justify-content-start"> <a href="#" data-rel="back" class="sidemenu_btn" data-role="none"> <img src="assets/images/back_btn.png" class="img-responsive" alt=""> </a>
+        <h3 class="header_title" id="cat_header"></h3>
+      </div>
+    </div>
+  </div>
+  <div data-role="content" class="ui-content p-0 d-flex align-items-start bg_white">
+    <div class="primary_section">
+			  	  <div class="primary_section_inner">
+				  		<div id="prdctlist"></div>
+				  </div>
+			  </div>
+  </div>
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="footer" data-hide-during-focus="false">
+    <div class="footer_nav">
+      <ul>
+        <li><a href="#homepage"><img src="assets/images/footer_home.png" alt=""><span>Home</span></a></li>
+        <!-- <li><a href="#my_membership"><img src="assets/images/footer_my_membership.png" alt=""><span>My Membership</span></a></li> -->
+        <!--<li><a href="#chatbot"><img src="assets/images/footer_chat_bot.png" alt=""><span>Chat Bot</span></a></li>
+        <li><a href="#contactus"><img src="assets/images/footer_contact.png" alt=""><span>Contact us</span></a></li>-->
+      </ul>
+    </div>
+  </div>
+</div>
+	
+<div data-role="page" data-dom-cache="true" id="products1" class="full_height bg_white">
+  <div data-role="header" class="inner_header" data-position="fixed" data-tap-toggle="false">
+    <div class="d-flex align-items-center justify-content-between main_header bb1">
+      <div class="d-flex align-items-center justify-content-start"> <a href="#" data-rel="back" class="sidemenu_btn" data-role="none"> <img src="assets/images/back_btn.png" class="img-responsive" alt=""> </a>
+        <h3 class="header_title">Product Catalogue</h3>
+      </div>
+    </div>
+  </div>
+  <div data-role="content" class="ui-content p-0 d-flex align-items-start bg_white">
+	  <div class="out_wrapper">
+		  <div class="inner_wrapper p-0">
+				<div class="product_categories d-flex align-items-start justify-content-between">
+					<a href="#" class="active">
+						<div class="d-flex justify-content-center align-items-center flex-column">
+							<div class="category_img">
+								<img src="assets/images/fridge_icon.png" alt="">
+							</div>
+							<span>Refrigerator</span>
+						</div>						
+					</a>  
+					<a href="#">
+						<div class="d-flex justify-content-center align-items-center flex-column">
+							<div class="category_img">
+								<img src="assets/images/ac_icon.png" alt="">
+							</div>						
+							<span>AC</span>
+						</div>						
+					</a> 
+					<a href="#">
+						<div class="d-flex justify-content-center align-items-center flex-column">
+							<div class="category_img">
+								<img src="assets/images/washing_machine_icon.png" alt="">
+							</div>						
+							<span>Washing Machine</span>
+						</div>						
+					</a>  
+					<a href="#">
+						<div class="d-flex justify-content-center align-items-center flex-column">
+							<div class="category_img">
+								<img src="assets/images/oven_icon.png" alt="">
+							</div>						
+							<span>Ovens</span>
+						</div>						
+					</a> 
+					<a href="#">
+						<div class="d-flex justify-content-center align-items-center flex-column">
+							<div class="category_img">
+								<img src="assets/images/air_cooler_icon.png" alt="">
+							</div>						
+							<span>Air Coolers</span>
+						</div>						
+					</a>  
+				  </div>
+
+					<div class="d-flex justify-content-end w-100">
+						  <ul class="sort_options">
+							<li>
+								<a href="#" class="sort_link" id="toggleSort"><img src="assets/images/sort_icon.png" class="img-responsive" alt=""></a>	
+							  </li>
+							  
+						  </ul>	  	
+					  </div>
+			  
+			  <div class="filter_panel1" id="sort_panel" style="display: none">
+					<div class="ui-grid-a">
+						<div class="ui-block-a">
+							<h3>Sort By</h3>
+						</div>
+						<div class="ui-block-b text-right"> <a href="#" class="filter_close1" id="sortClose">+</a> </div>
+					</div>
+					<div>						
+						<ul class="sort_sub">
+							<li><a href="#">Popularity</a></li>
+							<li><a href="#">Low to High</a></li>
+							<li><a href="#">High to Low</a></li>
+							<li><a href="#">Newest First</a></li>
+						</ul>
+					</div>						
+				</div>
+				<div class="overlay"></div>
+
+					<div class="products w-100 d-flex align-items-start justify-content-between p-3 flex-wrap">
+					<div class="product">
+						<div class="product_img">
+							<img src="assets/images/fridge4.png" class="img-responsive" alt="">
+						</div>
+						<div class="d-flex align-items-center justify-content-between">
+							<div class="product_name">
+								<p>Refrigerator</p>
+								<span class="model_name">Godrej Eon Valor 290</span>
+							</div>
+							<div class="product_price">
+								<p class="sell_price">29106</p>
+								<p class="list_price">35615</p>
+							</div>
+						</div>
+					  </div>
+					<div class="product">
+						<div class="product_img">
+							<img src="assets/images/fridge3.png" class="img-responsive" alt="">
+						</div>
+						<div class="d-flex align-items-center justify-content-between">
+							<div class="product_name">
+								<p>Refrigerator</p>
+								<span class="model_name">Godrej Eon Valor 270</span>
+							</div>
+							<div class="product_price">
+								<p class="sell_price">27095</p>
+								<p class="list_price">33400</p>
+							</div>
+						</div>
+					  </div>
+					<div class="product">
+						<div class="product_img">
+							<img src="assets/images/fridge2.png" class="img-responsive" alt="">
+						</div>
+						<div class="d-flex align-items-center justify-content-between">
+							<div class="product_name">
+								<p>Refrigerator</p>
+								<span class="model_name">Godrej Eon Astra 280</span>
+							</div>
+							<div class="product_price">
+								<p class="sell_price">19693</p>
+								<p class="list_price">24380</p>
+							</div>
+						</div>
+					  </div>
+					<div class="product">
+						<div class="product_img">
+							<img src="assets/images/fridge2.png" class="img-responsive" alt="">
+						</div>
+						<div class="d-flex align-items-center justify-content-between">
+							<div class="product_name">
+								<p>Refrigerator</p>
+								<span class="model_name">Godrej Eon Astra 270</span>
+							</div>
+							<div class="product_price">
+								<p class="sell_price">26106</p>
+								<p class="list_price">32615</p>
+							</div>
+						</div>
+					  </div>
+				  </div>
+		  </div>
+	  </div>
+   		
+  </div>
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="footer" data-hide-during-focus="false">
+    <div class="footer_nav">
+      <ul>
+        <li><a href="#homepage"><img src="assets/images/footer_home.png" alt=""><span>Home</span></a></li>
+        <!-- <li><a href="#my_membership"><img src="assets/images/footer_my_membership.png" alt=""><span>My Membership</span></a></li> -->
+        <!--<li><a href="#chatbot"><img src="assets/images/footer_chat_bot.png" alt=""><span>Chat Bot</span></a></li>
+        <li><a href="#contactus"><img src="assets/images/footer_contact.png" alt=""><span>Contact us</span></a></li>-->
+      </ul>
+    </div>
+  </div>
+</div>
+	
+	
+	
+<div data-role="page" data-dom-cache="true" id="chatbot" class="full_height bg_white">
+  <div data-role="header" class="inner_header" data-position="fixed" data-tap-toggle="false">
+    <div class="d-flex align-items-center justify-content-between main_header bb1">
+      <div class="d-flex align-items-center justify-content-start"> <a href="#" data-rel="back" class="sidemenu_btn" data-role="none"> <img src="assets/images/back_btn.png" class="img-responsive" alt=""> </a>
+        <h3 class="header_title">Chat Bot</h3>
+      </div>
+    </div>
+  </div>
+  <div data-role="content" class="ui-content p-0 d-flex align-items-start bg_white">
+	  <div class="out_wrapper">
+		  <div class="inner_wrapper p-0">
+			<div class="botui-app-container" id="delivery-bot">
+			  <bot-ui></bot-ui>
+			</div>
+		  </div>
+	  </div>
+   		
+  </div>
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="footer" data-hide-during-focus="false">
+    <div class="footer_nav">
+      <ul>
+        <li><a href="#homepage"><img src="assets/images/footer_home.png" alt=""><span>Home</span></a></li>
+        <!-- <li><a href="#my_membership"><img src="assets/images/footer_my_membership.png" alt=""><span>My Membership</span></a></li> -->
+        <!--<li><a href="#chatbot"><img src="assets/images/footer_chat_bot.png" alt=""><span>Chat Bot</span></a></li>
+        <li><a href="#contactus"><img src="assets/images/footer_contact.png" alt=""><span>Contact us</span></a></li>-->
+      </ul>
+    </div>
+  </div>
+</div>
+	
+	
+<div data-role="page" data-dom-cache="true" id="whatsnew" class="full_height bg_white">
+  <div data-role="header" class="inner_header" data-position="fixed" data-tap-toggle="false">
+    <div class="d-flex align-items-center justify-content-between main_header bb1">
+      <div class="d-flex align-items-center justify-content-start"> <a href="#" data-rel="back" class="sidemenu_btn" data-role="none"> <img src="assets/images/back_btn.png" class="img-responsive" alt=""> </a>
+        <h3 class="header_title">What's New</h3>
+      </div>
+    </div>
+  </div>
+  <div data-role="content" class="ui-content p-0 d-flex align-items-start bg_white">
+	  <div class="out_wrapper">
+		  <div class="inner_wrapper">
+			<div class="whats_new_slider owl-carousel owl-theme">
+			    <div class="wn_offer">
+					<a href="#">
+						<img src="assets/images/offer1.jpg" alt="" class="img-responsive" />
+				   </a>
+				</div>
+			    <div class="wn_offer">
+					<a href="#">
+						<img src="assets/images/offer2.jpg" alt="" class="img-responsive" />
+				   </a>
+				</div>
+			 </div>
+		  </div>
+	  </div>
+   		
+  </div>
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="footer" data-hide-during-focus="false">
+    <div class="footer_nav">
+      <ul>
+        <li><a href="#homepage"><img src="assets/images/footer_home.png" alt=""><span>Home</span></a></li>
+        <!-- <li><a href="#my_membership"><img src="assets/images/footer_my_membership.png" alt=""><span>My Membership</span></a></li> -->
+        <!--<li><a href="#chatbot"><img src="assets/images/footer_chat_bot.png" alt=""><span>Chat Bot</span></a></li>
+        <li><a href="#contactus"><img src="assets/images/footer_contact.png" alt=""><span>Contact us</span></a></li>-->
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div data-role="page" data-dom-cache="true" id="specials" class="full_height bg_white">
+  <div data-role="header" class="inner_header" data-position="fixed" data-tap-toggle="false">
+    <div class="d-flex align-items-center justify-content-between main_header">
+      <div class="d-flex align-items-center justify-content-start"> <a href="#" data-rel="back" class="sidemenu_btn" data-role="none"> <img src="assets/images/back_btn.png" class="img-responsive" alt=""> </a>
+        <h3 class="header_title">What's New</h3>
+      </div>
+    </div>
+  </div>
+  <div data-role="content" class="ui-content p-0 d-flex align-items-start bg_white">
+     <div class="out_wrapper">
+		  <div class="inner_wrapper">
+		    <div id="spec"></div>
+		  </div>
+	 </div>
+  </div>
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="footer" data-hide-during-focus="false">
+    <div class="footer_nav">
+      <ul>
+        <li><a href="#homepage"><img src="assets/images/footer_home.png" alt=""><span>Home</span></a></li>
+        <!-- <li><a href="#my_membership"><img src="assets/images/footer_my_membership.png" alt=""><span>My Membership</span></a></li> -->
+        <!--<li><a href="#chatbot"><img src="assets/images/footer_chat_bot.png" alt=""><span>Chat Bot</span></a></li>
+        <li><a href="#contactus"><img src="assets/images/footer_contact.png" alt=""><span>Contact us</span></a></li>-->
+      </ul>
+    </div>
+  </div>
+</div>
+	
+	
+<div data-role="page" data-dom-cache="true" id="social" class="full_height bg_white">
+  <div data-role="header" class="inner_header" data-position="fixed" data-tap-toggle="false">
+    <div class="d-flex align-items-center justify-content-between main_header bb1">
+      <div class="d-flex align-items-center justify-content-start"> <a href="#" data-rel="back" class="sidemenu_btn" data-role="none"> <img src="assets/images/back_btn.png" class="img-responsive" alt=""> </a>
+        <h3 class="header_title">Social Media</h3>
+      </div>
+    </div>
+  </div>
+  <div data-role="content" class="ui-content p-0 d-flex align-items-start bg_white">
+	  <div class="out_wrapper">
+		  <div class="inner_wrapper">
+			  <div class="social_links">
+			  	<ul>
+					<li><a href="javascript:showFbNew_1();" class="fb"><img src="assets/images/fb.png" alt=""><span>Facebook</span></a></li>  
+					<li><a href="javascript:showTwitterNew_1();" class="tw"><img src="assets/images/tw.png" alt=""><span>Twitter</span></a></li>  
+					<li><a href="javascript:showInstagramNew_1();" class="insta"><img src="assets/images/insta.png" alt=""><span>Instagram</span></a></li>  
+					<!--<li><a href="#" class="ld"><img src="assets/images/ld.png" alt=""><span>Linkedin</span></a></li>-->
+				</ul>
+			  </div>
+		  </div>
+	  </div>
+   		
+  </div>
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="footer" data-hide-during-focus="false">
+    <div class="footer_nav">
+      <ul>
+        <li><a href="#homepage"><img src="assets/images/footer_home.png" alt=""><span>Home</span></a></li>
+        <!-- <li><a href="#my_membership"><img src="assets/images/footer_my_membership.png" alt=""><span>My Membership</span></a></li> -->
+        <!--<li><a href="#chatbot"><img src="assets/images/footer_chat_bot.png" alt=""><span>Chat Bot</span></a></li>
+        <li><a href="#contactus"><img src="assets/images/footer_contact.png" alt=""><span>Contact us</span></a></li>-->
+      </ul>
+    </div>
+  </div>
+</div>
+	
+<div data-role="page" data-dom-cache="true" id="events" class="full_height bg_white">
+  <div data-role="header" class="inner_header" data-position="fixed" data-tap-toggle="false">
+    <div class="d-flex align-items-center justify-content-between main_header">
+      <div class="d-flex align-items-center justify-content-start"> <a href="#" data-rel="back" class="sidemenu_btn" data-role="none"> <img src="assets/images/back_btn.png" class="img-responsive" alt=""> </a>
+        <h3 class="header_title">Events</h3>
+      </div>
+      <!--<div class="header_right">
+        <div class="header_right_icons"> <a href="#my_profile" class="user_profile">
+          <div class="user_pic"> <img src="assets/images/user_pic.jpg" class="img-responsive" alt=""> </div>
+          <span>Rohan Verma</span> </a> </div>
+      </div>-->
+    </div>
+  </div>
+  <div data-role="content" class="ui-content p-0 d-flex align-items-start bg_white">
+    <div data-role="tabs" id="events_tabs" class="contest_tabs">
+      <div class="custom_tabs">
+        <ul>
+          <li style="width: 50%"><a href="#f_events">Upcoming</a></li>
+          <li style="width: 50%"><a href="#p_events">Past</a></li>
+        </ul>
+      </div>
+      <div id="f_events" class="ui-body-d ui-content">
+       	<div class="event_block">
+			<div class="event_fig">
+				<iframe width="100%" height="200" src="https://www.youtube.com/embed/133-vMG9dNg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			</div>
+			<div class="event_content d-flex align-items-center justify-content-start">
+				<div class="ev_time">
+					<h3>31</h3>
+					<h4>Dec</h4>
+				</div>
+				<div class="ev_content">
+					<h3>A very special Godrej LOUD 2021</h3>
+					<p>5:00 PM | Mumbai</p>
+				</div>
+			</div>
+		</div>
+      </div>
+      <div id="p_events" class="ui-body-d ui-content">
+			<div class="event_block">
+				<div class="event_fig">
+					<iframe width="100%" height="200" src="https://www.youtube.com/embed/isYqql401ok" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				</div>
+				<div class="event_content d-flex align-items-center justify-content-start">
+					<div class="ev_time">
+						<h3>31</h3>
+						<h4>Oct'21</h4>
+					</div>
+					<div class="ev_content">
+						<h3>'Giving back', the socially distanced way</h3>
+						<p>5:00 PM | Mumbai</p>
+					</div>
+				</div>
+			</div>
+		</div>
+    </div>
+  </div>
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="footer" data-hide-during-focus="false">
+    <div class="footer_nav">
+      <ul>
+        <li><a href="#homepage"><img src="assets/images/footer_home.png" alt=""><span>Home</span></a></li>
+        <!-- <li><a href="#my_membership"><img src="assets/images/footer_my_membership.png" alt=""><span>My Membership</span></a></li> -->
+        <!--<li><a href="#chatbot"><img src="assets/images/footer_chat_bot.png" alt=""><span>Chat Bot</span></a></li>
+        <li><a href="#contactus"><img src="assets/images/footer_contact.png" alt=""><span>Contact us</span></a></li>-->
+      </ul>
+    </div>
+  </div>
+</div>
+	
+	
+<div data-role="page" data-dom-cache="true" id="howto" class="full_height bg_white">
+  <div data-role="header" class="inner_header" data-position="fixed" data-tap-toggle="false">
+    <div class="d-flex align-items-center justify-content-between main_header bb1">
+      <div class="d-flex align-items-center justify-content-start"> <a href="#" data-rel="back" class="sidemenu_btn" data-role="none"> <img src="assets/images/back_btn.png" class="img-responsive" alt=""> </a>
+        <h3 class="header_title">How to</h3>
+      </div>
+      <!--<div class="header_right">
+        <div class="header_right_icons"> <a href="#my_profile" class="user_profile">
+          <div class="user_pic"> <img src="assets/images/user_pic.jpg" class="img-responsive" alt=""> </div>
+          <span>Rohan Verma</span> </a> </div>
+      </div>-->
+    </div>
+  </div>
+  <div data-role="content" class="ui-content p-0 d-flex align-items-start bg_white">
+    <div class="out_wrapper"> 
+		<div class="inner_wrapper"> 
+			<div class="event_block mb-20">
+				<div class="event_fig">
+					<iframe width="100%" height="200" src="https://www.youtube.com/embed/YWgCGLCZJm0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				</div>
+				<div class="event_content d-flex align-items-center justify-content-start">					
+					<div class="">
+						<h3>How is Godrej Agrovet's Oil Palm business completely self-sustainable?</h3>
+					</div>
+				</div>
+			</div>
+			<div class="event_block mb-20">
+				<div class="event_fig">
+					<iframe width="100%" height="200" src="https://www.youtube.com/embed/YWaxfACrqrs?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				</div>
+				<div class="event_content d-flex align-items-center justify-content-start">					
+					<div class="">
+						<h3>How volunteering can change your world</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+    </div>
+  </div>
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="footer" data-hide-during-focus="false">
+    <div class="footer_nav">
+      <ul>
+        <li><a href="#homepage"><img src="assets/images/footer_home.png" alt=""><span>Home</span></a></li>
+        <!-- <li><a href="#my_membership"><img src="assets/images/footer_my_membership.png" alt=""><span>My Membership</span></a></li> -->
+        <!--<li><a href="#chatbot"><img src="assets/images/footer_chat_bot.png" alt=""><span>Chat Bot</span></a></li>
+        <li><a href="#contactus"><img src="assets/images/footer_contact.png" alt=""><span>Contact us</span></a></li>-->
+      </ul>
+    </div>
+  </div>
+</div>
+	
+	
+ <div data-role="page" data-dom-cache="true" id="training" class="full_height bg_white">
+  <div data-role="header" class="inner_header" data-position="fixed" data-tap-toggle="false">
+    <div class="d-flex align-items-center justify-content-between main_header bb1">
+      <div class="d-flex align-items-center justify-content-start"> <a href="#" data-rel="back" class="sidemenu_btn" data-role="none"> <img src="assets/images/back_btn.png" class="img-responsive" alt=""> </a>
+        <h3 class="header_title">Training & Meets</h3>
+      </div>
+      <!--<div class="header_right">
+        <div class="header_right_icons"> <a href="#my_profile" class="user_profile">
+          <div class="user_pic"> <img src="assets/images/user_pic.jpg" class="img-responsive" alt=""> </div>
+          <span>Rohan Verma</span> </a> </div>
+      </div>-->
+    </div>
+  </div>
+  <div data-role="content" class="ui-content p-0 align-items-start bg_white">
+    <!--<div class="out_wrapper"> 
+		<div class="inner_wrapper"> 
+			<div class="event_block">
+				<div class="event_fig">
+					<iframe width="100%" height="200" src="https://www.youtube.com/embed/4EWLl60ci9Y?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				</div>
+				<div class="event_content d-flex align-items-center justify-content-start">
+					<div class="ev_time">
+						<h3>25</h3>
+						<h4>Nov</h4>
+						<p class="font_sm" style="white-space: nowrap">10:00 AM</p>
+					</div>
+					<div class="ev_content">
+						<h4>How Godrej is achieving sustainability in manufacturing and construction</h4>
+						<p>Location:  Mumbai</p>
+					</div>
+				</div>
+			</div>
+		</div>
+    </div>-->
+    <div class="out_wrapper">
+		<div class="inner_wrapper">
+			<div id="training_vdos_div"></div>
+		</div>
+	</div>
+  </div>
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="footer" data-hide-during-focus="false">
+    <div class="footer_nav">
+      <ul>
+        <li><a href="#homepage"><img src="assets/images/footer_home.png" alt=""><span>Home</span></a></li>
+        <!-- <li><a href="#my_membership"><img src="assets/images/footer_my_membership.png" alt=""><span>My Membership</span></a></li> -->
+        <!--<li><a href="#chatbot"><img src="assets/images/footer_chat_bot.png" alt=""><span>Chat Bot</span></a></li>
+        <li><a href="#contactus"><img src="assets/images/footer_contact.png" alt=""><span>Contact us</span></a></li>-->
+      </ul>
+    </div>
+  </div>
+</div>
+	
+<div data-role="page" data-dom-cache="true" id="product_launch" class="full_height bg_white">
+  <div data-role="header" class="inner_header" data-position="fixed" data-tap-toggle="false">
+    <div class="d-flex align-items-center justify-content-between main_header bb1">
+      <div class="d-flex align-items-center justify-content-start"> <a href="#" data-rel="back" class="sidemenu_btn" data-role="none"> <img src="assets/images/back_btn.png" class="img-responsive" alt=""> </a>
+        <h3 class="header_title">New Product Launch</h3>
+      </div>
+    </div>
+  </div>
+  <div data-role="content" class="ui-content p-0 d-flex align-items-start bg_white">
+    <div class="out_wrapper"> 
+		<div class="inner_wrapper"> 
+			<div class=""> 
+				<div class="event_block mb-20">
+					<div class="event_fig">						
+						<iframe width="100%" height="200" src="https://www.youtube.com/embed/fZlmyyHX-qc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+					<div class="event_content d-flex align-items-center justify-content-start">
+						<div class="">
+							<h3>Godrej NXW Inverter AC - India's Best AC</h3>
+						</div>
+					</div>
+				</div>
+				<div class="event_block mb-20">
+					<div class="event_fig">
+						<img src="assets/images/product_launch.png" class="img-responsive" alt="">
+					</div>
+					<div class="event_content d-flex align-items-center justify-content-start">
+						<div class="">
+							<h3>Godrej Medical Refrigerators</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+    </div>
+  </div>
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="footer" data-hide-during-focus="false">
+    <div class="footer_nav">
+      <ul>
+        <li><a href="#homepage"><img src="assets/images/footer_home.png" alt=""><span>Home</span></a></li>
+        <!-- <li><a href="#my_membership"><img src="assets/images/footer_my_membership.png" alt=""><span>My Membership</span></a></li> -->
+        <!--<li><a href="#chatbot"><img src="assets/images/footer_chat_bot.png" alt=""><span>Chat Bot</span></a></li>
+        <li><a href="#contactus"><img src="assets/images/footer_contact.png" alt=""><span>Contact us</span></a></li>-->
+      </ul>
+    </div>
+  </div>
+</div>
+	
+		
+<div id="wait" style="display:none;width:69px;height:89px;border:0px solid black;position:absolute;top:50%;left:40%;padding:2px;"><img src="assets/img/load.gif" width="60" height="60" /></div>
+
+<div class="promo_popup" id="scan_qr_success">
+					<div class="form-group text-center">
+						<p class="mt-0" id="scan_qr_success_txt"></p>
+					</div>
+					<div class="ui-grid-solo mt-20">
+						<div class="text-center"> <a href="#transactions" class="btn btn_primary2 pop_btn">Ok</a> </div>
+					</div>
+</div>
+	
+<div id="coupons_pop" data-overlay-theme="b" data-theme="a" class="promo_popup ui-corner-none" style="top:10px !important;">
+                	<!--<a href="#" data-rel="back" class="ui-btn-right pop_close">X</a>-->
+                    <a href="#" class="location_block" style="text-align: center;"></a>
+                    
+                    <div id="coupons_pop_div">
+						
+					</div>
+</div>
+<!--page--> 
+<script src="assets/js/jquery.mousewheel.min.js"></script>
+</body>
+</html>
